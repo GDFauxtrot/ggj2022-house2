@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ShopItemSelection : MonoBehaviour
 {
+    [SerializeField] private Transform itemIconTransform;
+    [SerializeField] private GameObject selectIndicator;
     private ShopItem itemData;
     private ShopManager manager;
-    [SerializeField] private Transform itemIconTransform;
     public void Initialize(ShopItem itemData, ShopManager manager)
     {
         this.manager = manager;
@@ -16,6 +17,11 @@ public class ShopItemSelection : MonoBehaviour
     }
 
     public void Select(){
-        manager.DisplayItemInfo(itemData);
+        manager.Select(this, itemData);
+        selectIndicator.SetActive(true);
+    }
+
+    public void UnSelect(){
+        selectIndicator.SetActive(false);
     }
 }

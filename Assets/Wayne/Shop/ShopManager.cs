@@ -12,6 +12,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Transform itemSelectionGroup; 
     [SerializeField] private GameObject itemSelectionIconPref;
 
+    private List<ShopItemSelection> itemSelectionIcons = new List<ShopItemSelection>();
+    private ShopItemSelection ItemSelectionSelected;
     private ShopItem itemSelected;
     private GameObject itemIcon;
 
@@ -30,7 +32,7 @@ public class ShopManager : MonoBehaviour
     private void Open()
     {
         InitializeSelectionPanel();
-        DisplayItemInfo(itemsAvailable[0]);
+        itemSelectionIcons[0].Select();
     }
 
     private void Close()
@@ -40,17 +42,22 @@ public class ShopManager : MonoBehaviour
 
     private void InitializeSelectionPanel(){
         // only show the selection panel when there are more than 1 items
-        if(itemsAvailable.Count <= 1){
-            itemSelectionPanel.SetActive(false);
-            return;
-        }
-
-        itemSelectionPanel.SetActive(true);
+        itemSelectionPanel.SetActive(itemsAvailable.Count > 1);
+        
+        itemSelectionIcons.Clear();
         foreach(ShopItem i in itemsAvailable){
             GameObject newObj = Instantiate(itemSelectionIconPref, itemSelectionGroup);
             ShopItemSelection itemSelection = newObj.GetComponent<ShopItemSelection>();
             itemSelection.Initialize(i, this);
+            itemSelectionIcons.Add(itemSelection);
         }
+    }
+
+    public void Select(ShopItemSelection selectionIcon, ShopItem itemData){
+        if(ItemSelectionSelected != null) 
+            ItemSelectionSelected.UnSelect();
+        ItemSelectionSelected = selectionIcon;
+        DisplayItemInfo(itemData);
     }
 
     //Update item info to show a new item
