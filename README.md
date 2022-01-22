@@ -2,6 +2,8 @@
 
 ## Setup
 
+Trello link: https://trello.com/b/q1DUXirC/house-2
+
 ### Unity
 Unity Hub is highly recommended ([link here, scroll down to download](https://unity.com/unity-hub))
 
