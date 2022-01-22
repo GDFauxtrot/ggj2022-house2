@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ShopItem1
   m_EditorClassIdentifier: 
   itemName: 1
-  price: 0
+  price: 12
   iconPref: {fileID: 5030980261904098607, guid: 1ffb5e5a96e50984eab10b7d4e34c719,
     type: 3}
