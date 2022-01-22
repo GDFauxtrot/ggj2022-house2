@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<ShopItem> itemsAvailable = new List<ShopItem>();
+    [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private GameObject itemSelectionPanel; 
+    [SerializeField] private GameObject itemSelectionIconPref;
+    //[SerializeField] private 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
