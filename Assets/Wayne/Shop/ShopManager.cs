@@ -5,7 +5,16 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+    [Header("Shop Trigger")]
+    [SerializeField] private PlayerController player;
+    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private float showTriggerDistance = 5;
+    [SerializeField] private GameObject shopTiggerCanvas;
+    private bool inShop = false;
+
+    [Header("Shop UI")]
     [SerializeField] private List<ShopItem> itemsAvailable = new List<ShopItem>();
+    [SerializeField] private GameObject ShopCanvas;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private Transform itemIconTransform;
     [SerializeField] private GameObject itemSelectionPanel; 
@@ -17,27 +26,42 @@ public class ShopManager : MonoBehaviour
     private ShopItem itemSelected;
     private GameObject itemIcon;
 
-    void Start()
-    {
-        Open();
+    void Start(){
+        InitializeSelectionPanel();
     }
 
     void Update()
     {
-        if(itemIcon != null){
-            itemIcon.transform.Rotate(Vector3.up * Time.deltaTime * 60);
+        if(inShop){
+            if(itemIcon != null){
+                itemIcon.transform.Rotate(Vector3.up * Time.deltaTime * 60);
+            }
+        }else{
+            CheckShowingShopTrigger();
         }
     }
 
-    private void Open()
+    private void CheckShowingShopTrigger(){
+        if(!inShop){
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            shopTiggerCanvas.SetActive(distance <= showTriggerDistance);
+        }
+    }
+
+    public void Open()
     {
-        InitializeSelectionPanel();
+        inShop = true;
+        shopTiggerCanvas.SetActive(false);
+        CameraController.SetCurrentTarget(cameraTarget);
+        ShopCanvas.SetActive(true);
         itemSelectionIcons[0].Select();
     }
 
-    private void Close()
+    public void Close()
     {
-
+        inShop = false;
+        CameraController.SetCurrentTarget(player.transform);
+        ShopCanvas.SetActive(false);
     }
 
     private void InitializeSelectionPanel(){
