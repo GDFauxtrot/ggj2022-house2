@@ -5,52 +5,83 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+    [Header("Shop Trigger")]
+    [SerializeField] private PlayerController player;
+    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private float showTriggerDistance = 5;
+    [SerializeField] private GameObject shopTiggerCanvas;
+    private bool inShop = false;
+
+    [Header("Shop UI")]
     [SerializeField] private List<ShopItem> itemsAvailable = new List<ShopItem>();
+    [SerializeField] private GameObject ShopCanvas;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private Transform itemIconTransform;
     [SerializeField] private GameObject itemSelectionPanel; 
     [SerializeField] private Transform itemSelectionGroup; 
     [SerializeField] private GameObject itemSelectionIconPref;
 
+    private List<ShopItemSelection> itemSelectionIcons = new List<ShopItemSelection>();
+    private ShopItemSelection ItemSelectionSelected;
     private ShopItem itemSelected;
     private GameObject itemIcon;
 
-    void Start()
-    {
-        Open();
+    void Start(){
+        InitializeSelectionPanel();
     }
 
     void Update()
     {
-        if(itemIcon != null){
-            itemIcon.transform.Rotate(Vector3.up * Time.deltaTime * 60);
+        if(inShop){
+            if(itemIcon != null){
+                itemIcon.transform.Rotate(Vector3.up * Time.deltaTime * 60);
+            }
+        }else{
+            CheckShowingShopTrigger();
         }
     }
 
-    private void Open()
-    {
-        InitializeSelectionPanel();
-        DisplayItemInfo(itemsAvailable[0]);
+    private void CheckShowingShopTrigger(){
+        if(!inShop){
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            shopTiggerCanvas.SetActive(distance <= showTriggerDistance);
+        }
     }
 
-    private void Close()
+    public void Open()
     {
+        inShop = true;
+        shopTiggerCanvas.SetActive(false);
+        CameraController.SetCurrentTarget(cameraTarget);
+        ShopCanvas.SetActive(true);
+        itemSelectionIcons[0].Select();
+    }
 
+    public void Close()
+    {
+        inShop = false;
+        CameraController.SetCurrentTarget(player.transform);
+        ShopCanvas.SetActive(false);
     }
 
     private void InitializeSelectionPanel(){
         // only show the selection panel when there are more than 1 items
-        if(itemsAvailable.Count <= 1){
-            itemSelectionPanel.SetActive(false);
-            return;
-        }
-
-        itemSelectionPanel.SetActive(true);
+        itemSelectionPanel.SetActive(itemsAvailable.Count > 1);
+        
+        itemSelectionIcons.Clear();
         foreach(ShopItem i in itemsAvailable){
             GameObject newObj = Instantiate(itemSelectionIconPref, itemSelectionGroup);
             ShopItemSelection itemSelection = newObj.GetComponent<ShopItemSelection>();
             itemSelection.Initialize(i, this);
+            itemSelectionIcons.Add(itemSelection);
         }
+    }
+
+    public void Select(ShopItemSelection selectionIcon, ShopItem itemData){
+        if(ItemSelectionSelected != null) 
+            ItemSelectionSelected.UnSelect();
+        ItemSelectionSelected = selectionIcon;
+        DisplayItemInfo(itemData);
     }
 
     //Update item info to show a new item
