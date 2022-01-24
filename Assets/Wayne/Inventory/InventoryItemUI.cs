@@ -10,7 +10,9 @@ public class InventoryItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numText;
     private InventoryManager manager;
 
-    public void Initialize(){
-
+    public void Initialize(ItemData itemData, InventoryManager manager){
+        this.manager = manager;
+        itemIcon.sprite = itemData.sprite;
+        
     }
 }
