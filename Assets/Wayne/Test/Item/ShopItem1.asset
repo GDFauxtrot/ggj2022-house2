@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 1
   price: 12
-  iconPref: {fileID: 5030980261904098607, guid: 1ffb5e5a96e50984eab10b7d4e34c719,
+  sprite: {fileID: 21300000, guid: 62d8a7def62adee45ae227f7b5dfd9cc, type: 3}
+  iconModel: {fileID: 5030980261904098607, guid: 1ffb5e5a96e50984eab10b7d4e34c719,
     type: 3}

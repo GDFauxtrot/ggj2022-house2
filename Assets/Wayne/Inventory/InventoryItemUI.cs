@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InventoryItemUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Image itemIcon;
+    [SerializeField] private TextMeshProUGUI numText;
+    private InventoryManager manager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Initialize(){
+
     }
 }

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3c23ff04bb509e4cb38e04b52f1283d, type: 3}
-  m_Name: ShopItem4
+  m_Name: ShopItem3
   m_EditorClassIdentifier: 
-  itemName: 4
-  price: 1231
-  iconPref: {fileID: 9120358807487441991, guid: f3fe0e376202719499c9748845056147,
+  itemName: 3
+  price: 31
+  sprite: {fileID: 21300000, guid: 62d8a7def62adee45ae227f7b5dfd9cc, type: 3}
+  iconModel: {fileID: 372001055424856890, guid: 9262a4f02debbf849b9d6f150f4bc4e3,
     type: 3}

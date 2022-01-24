@@ -6,13 +6,13 @@ public class ShopItemSelection : MonoBehaviour
 {
     [SerializeField] private Transform itemIconTransform;
     [SerializeField] private GameObject selectIndicator;
-    private ShopItem itemData;
+    private Item itemData;
     private ShopManager manager;
-    public void Initialize(ShopItem itemData, ShopManager manager)
+    public void Initialize(Item itemData, ShopManager manager)
     {
         this.manager = manager;
         this.itemData = itemData;
-        GameObject obj = Instantiate(itemData.iconPref, itemIconTransform);
+        GameObject obj = Instantiate(itemData.iconModel, itemIconTransform);
         obj.transform.localPosition = Vector3.zero;
     }
 
