@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class InventoryManager : MonoBehaviour
     }
 
     private List<InventoryItem> currentItems = new List<InventoryItem>();
+    [SerializeField] private GameObject inventoryPage;
+    [SerializeField] private Image previewEquippedActiveItemIcon;
+    [SerializeField] private TextMeshProUGUI previewEquippedActiveItemNumText;
     private ItemData equippedActiveItem = null;
 
     public void AddItem(ItemData item, int num){
@@ -27,6 +32,7 @@ public class InventoryManager : MonoBehaviour
             if(item.type == ItemType.activeItem && equippedActiveItem == null)
                 equippedActiveItem = item;
         }
+        UpdateInventoryPreview();
     }
 
     public void RemoveItem(ItemData item, int num){
@@ -34,9 +40,14 @@ public class InventoryManager : MonoBehaviour
         if(index >= 0)
         {
             currentItems[index].num -= num;
-            if(currentItems[index].num <= 0)
+            if(currentItems[index].num <= 0){
                 currentItems.RemoveAt(index);
+                // if this item is equipped, unequip it 
+                if(item == equippedActiveItem)
+                    equippedActiveItem = null;
+            }
         }
+        UpdateInventoryPreview();
     }
 
     public int Find(ItemData item){
@@ -46,5 +57,39 @@ public class InventoryManager : MonoBehaviour
                 return x;
         }
         return -1;
+    }
+
+    public int GetNum(ItemData item){
+        int index = Find(item);
+        if(index < 0)
+            return 0;
+        return currentItems[index].num;
+    }
+
+    public void OpenInventory(){
+        inventoryPage.SetActive(true);
+    }
+
+    public void CloseInventory(){
+        inventoryPage.SetActive(false);
+    }
+
+    public void UpdateInventoryPreview(){ 
+        bool equippedItem = (equippedActiveItem != null);
+        previewEquippedActiveItemIcon.gameObject.SetActive(equippedItem);
+        previewEquippedActiveItemNumText.gameObject.SetActive(equippedItem);
+        if(equippedItem){
+            previewEquippedActiveItemIcon.sprite = equippedActiveItem.sprite;
+            previewEquippedActiveItemNumText.text = GetNum(equippedActiveItem).ToString();
+        }
+    }
+
+    // Populate list of all items in inventory page
+    private void UpdateItemList(){
+        
+    }
+
+    private void UpdateSingleItemUI(InventoryItemUI itemUI, InventoryItem itemInfo){
+        
     }
 }
