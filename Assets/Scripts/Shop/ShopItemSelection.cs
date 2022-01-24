@@ -6,9 +6,9 @@ public class ShopItemSelection : MonoBehaviour
 {
     [SerializeField] private Transform itemIconTransform;
     [SerializeField] private GameObject selectIndicator;
-    private Item itemData;
+    private ItemData itemData;
     private ShopManager manager;
-    public void Initialize(Item itemData, ShopManager manager)
+    public void Initialize(ItemData itemData, ShopManager manager)
     {
         this.manager = manager;
         this.itemData = itemData;

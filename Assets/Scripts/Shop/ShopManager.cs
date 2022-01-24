@@ -13,7 +13,7 @@ public class ShopManager : MonoBehaviour
     private bool inShop = false;
 
     [Header("Shop UI")]
-    [SerializeField] private List<Item> itemsAvailable = new List<Item>();
+    [SerializeField] private List<ItemData> itemsAvailable = new List<ItemData>();
     [SerializeField] private GameObject ShopCanvas;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private Transform itemIconTransform;
@@ -23,7 +23,7 @@ public class ShopManager : MonoBehaviour
 
     private List<ShopItemSelection> itemSelectionIcons = new List<ShopItemSelection>();
     private ShopItemSelection ItemSelectionSelected;
-    private Item itemSelected;
+    private ItemData itemSelected;
     private GameObject itemIcon;
 
     void Start(){
@@ -69,7 +69,7 @@ public class ShopManager : MonoBehaviour
         itemSelectionPanel.SetActive(itemsAvailable.Count > 1);
         
         itemSelectionIcons.Clear();
-        foreach(Item i in itemsAvailable){
+        foreach(ItemData i in itemsAvailable){
             GameObject newObj = Instantiate(itemSelectionIconPref, itemSelectionGroup);
             ShopItemSelection itemSelection = newObj.GetComponent<ShopItemSelection>();
             itemSelection.Initialize(i, this);
@@ -77,7 +77,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void Select(ShopItemSelection selectionIcon, Item itemData){
+    public void Select(ShopItemSelection selectionIcon, ItemData itemData){
         if(ItemSelectionSelected != null) 
             ItemSelectionSelected.UnSelect();
         ItemSelectionSelected = selectionIcon;
@@ -85,7 +85,7 @@ public class ShopManager : MonoBehaviour
     }
 
     //Update item info to show a new item
-    public void DisplayItemInfo(Item itemData){
+    public void DisplayItemInfo(ItemData itemData){
         itemSelected = itemData;
         priceText.text = itemData.price.ToString();
         // remove previous item icon 
