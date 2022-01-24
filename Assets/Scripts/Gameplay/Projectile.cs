@@ -24,8 +24,6 @@ public class Projectile : MonoBehaviour
 
             if (lifetimeStart + lifetime < Time.timeSinceLevelLoad)
             {
-                player.ReportDeadProjectile();
-
                 gameObject.SetActive(false);
             }
         }

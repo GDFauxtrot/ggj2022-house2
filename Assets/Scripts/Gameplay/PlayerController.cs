@@ -20,8 +20,7 @@ public class PlayerController : MonoBehaviour
     private GameObject projectilePoolParent;
     private GameObject[] projectilePool;
     private Plane mousePlane;
-    // TODO make a rolling index for this, just checking index does not work! Shooting is pretty broken at the moment
-    private int projectilesActive;
+    private int projectileIndex;
 
     void Awake()
     {
@@ -69,21 +68,17 @@ public class PlayerController : MonoBehaviour
                 //         worldPos, Color.red, 5f);
             }
 
-            if (projectilesActive < projectileMaxPoolSize)
-            {
-                GameObject projectileGO = projectilePool[projectilesActive];
-                projectileGO.SetActive(true);
-                Projectile projectile = projectileGO.GetComponent<Projectile>();
-                projectile.Setup(this, transform.position, (worldPos - transform.position).normalized, projectileSpeed, projectileLifetime, 1f);
+            // Set up projectile, advance projectile index
+            GameObject projectileGO = projectilePool[projectileIndex];
+            projectileGO.SetActive(true);
+            Projectile projectile = projectileGO.GetComponent<Projectile>();
+            projectile.Setup(this, transform.position, (worldPos - transform.position).normalized, projectileSpeed, projectileLifetime, 1f);
 
-                ++projectilesActive;
-            }
+            if (++projectileIndex >= projectileMaxPoolSize)
+            {
+                projectileIndex -= projectileMaxPoolSize;
+                }
         }
 
-    }
-
-    public void ReportDeadProjectile()
-    {
-        --projectilesActive;
     }
 }

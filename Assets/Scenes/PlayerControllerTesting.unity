@@ -270,7 +270,7 @@ MonoBehaviour:
   speed: 5
   shootFireRate: 10
   projectileSpeed: 10
-  projectileLifetime: 3
+  projectileLifetime: 2
   projectileMaxPoolSize: 10
   projectilePrefab: {fileID: 599152460}
 --- !u!54 &1045524973
@@ -623,6 +623,7 @@ MonoBehaviour:
   lockRotToTarget: 0
   screenShakeAmount: 0
   screenShakeSpeed: 50
+  screenShakeFalloff: 0.2
 --- !u!114 &1638522288
 MonoBehaviour:
   m_ObjectHideFlags: 0
