@@ -6,7 +6,7 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
-    private class InventoryItem{
+    public class InventoryItem{
         public ItemData item;
         public int num;
 
@@ -17,7 +17,11 @@ public class InventoryManager : MonoBehaviour
     }
 
     private List<InventoryItem> currentItems = new List<InventoryItem>();
+    [Header("Inventory Page")]
     [SerializeField] private GameObject inventoryPage;
+    [SerializeField] private InventoryItemList itemList;
+
+    [Header("Preview Page")]
     [SerializeField] private Image previewEquippedActiveItemIcon;
     [SerializeField] private TextMeshProUGUI previewEquippedActiveItemNumText;
     private ItemData equippedActiveItem = null;
@@ -50,6 +54,10 @@ public class InventoryManager : MonoBehaviour
         UpdateInventoryPreview();
     }
 
+    public List<InventoryItem> GetItemList(){
+        return currentItems;
+    }
+
     public int Find(ItemData item){
         for(int x = 0; x < currentItems.Count; ++x)
         {
@@ -68,6 +76,7 @@ public class InventoryManager : MonoBehaviour
 
     public void OpenInventory(){
         inventoryPage.SetActive(true);
+        
     }
 
     public void CloseInventory(){
@@ -86,7 +95,7 @@ public class InventoryManager : MonoBehaviour
 
     // Populate list of all items in inventory page
     private void UpdateItemList(){
-        
+
     }
 
     private void UpdateSingleItemUI(InventoryItemUI itemUI, InventoryItem itemInfo){
