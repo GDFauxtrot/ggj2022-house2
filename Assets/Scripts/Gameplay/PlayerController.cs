@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     [Header("Shooting")]
-    public float shootFireRate;
+    [Min(0.01f)]
+    public float shootFireRate = 1f;
+    private float timeSinceLastShot;
 
     [Header("Projectiles")]
     public float projectileSpeed;
@@ -83,8 +85,13 @@ public class PlayerController : MonoBehaviour
         rigidbody.angularVelocity = Vector3.zero;
 
         // Shooty logic
-        if (Input.GetMouseButtonDown(0))
+        float desiredShootTime = timeSinceLastShot + (1f/shootFireRate);
+        if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && desiredShootTime <= Time.timeSinceLevelLoad))
         {
+            timeSinceLastShot = Time.timeSinceLevelLoad;
+            if (!Input.GetMouseButtonDown(0))
+                timeSinceLastShot += (desiredShootTime - Time.timeSinceLevelLoad);
+
             // Set up projectile, advance projectile index
             GameObject projectileGO = projectilePool[projectileIndex];
             projectileGO.SetActive(true);
