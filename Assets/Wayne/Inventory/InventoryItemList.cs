@@ -75,11 +75,13 @@ public class InventoryItemList : MonoBehaviour
     public void PageUp(){
         page = Mathf.Max(1, page - 1);
         UpdatePageIcon();
+        UpdatePage();
     }
 
     public void PageDown(){
         page = Mathf.Min(GetMaxPage(), page + 1);
         UpdatePageIcon();
+        UpdatePage();
     }
 
     public int GetMaxPage(){
