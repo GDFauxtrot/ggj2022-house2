@@ -6,6 +6,7 @@ using TMPro;
 public class ShopManager : MonoBehaviour
 {
     private InventoryManager inventoryManager;
+    private MoneyManager moneyManager;
     [Header("Shop Trigger")]
     private PlayerController player;
     [SerializeField] private Transform cameraTarget;
@@ -31,6 +32,7 @@ public class ShopManager : MonoBehaviour
         InitializeSelectionPanel();
         inventoryManager = GameObject.FindObjectOfType<InventoryManager>();
         player = GameObject.FindObjectOfType<PlayerController>();
+        moneyManager = GameObject.FindObjectOfType<MoneyManager>();
     }
 
     void Update()
@@ -99,6 +101,11 @@ public class ShopManager : MonoBehaviour
     }
 
     public void Purchase(){
-        inventoryManager.AddItem(itemSelected, 1);
+        if(itemSelected.price <= moneyManager.GetMoney())
+        {
+            inventoryManager.AddItem(itemSelected, 1);
+            moneyManager.ReduceMoney(itemSelected.price);
+        }
+        
     }
 }

@@ -38,6 +38,7 @@ public class InventoryItemList : MonoBehaviour
             InventoryManager.InventoryItem itemData = items[startIndex + i];
             itemUIs[i].gameObject.SetActive(true);
             itemUIs[i].Initialize(manager, itemData.item, itemData.num);
+            itemUIs[i].SetSelectorActive(itemData.item == manager.GetSelectedItem());
         }
         for(int i = displayItemNums; i < maxItemPerPage; ++i){
             itemUIs[i].gameObject.SetActive(false);
