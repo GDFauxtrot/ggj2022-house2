@@ -30,6 +30,8 @@ public class CameraController : MonoBehaviour
     public float screenShakeAmount;
     [Min(0f)]
     public float screenShakeSpeed;
+    [Range(0f, 1f)]
+    public float screenShakeFalloff;
 
     private Vector3 screenShakeDisplacement;
 
@@ -102,6 +104,12 @@ public class CameraController : MonoBehaviour
 
             screenShakeDisplacement = perlin * screenShakeAmount / 10f;
             transform.position = transform.position + screenShakeDisplacement;
+
+            screenShakeAmount = Mathf.Lerp(screenShakeAmount, 0f, screenShakeFalloff * Time.deltaTime * 20);
+            if (screenShakeAmount < 0.001f)
+            {
+                screenShakeAmount = 0f;
+            }
         }
         else
         {

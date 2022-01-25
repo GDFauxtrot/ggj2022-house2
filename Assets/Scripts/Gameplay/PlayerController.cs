@@ -19,9 +19,14 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     private GameObject projectilePoolParent;
     private GameObject[] projectilePool;
+    private int projectileIndex;
+
+    [Header("Mouse")]
+    public bool rotationFollowMouse;
+
     private Plane mousePlane;
-    // TODO make a rolling index for this, just checking index does not work! Shooting is pretty broken at the moment
-    private int projectilesActive;
+    private Vector3 mouseWorldPos;
+
 
     void Awake()
     {
@@ -50,40 +55,47 @@ public class PlayerController : MonoBehaviour
                 rigidbody.velocity.y,
                 Input.GetAxisRaw("Vertical") * speed), speed);
 
+
+        // Get mouse world pos - update intercept plane, shoot ray and get result
+        mousePlane.SetNormalAndPosition(Vector3.up, new Vector3(0f, transform.position.y, 0f));
+        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        float distance;
+        bool mousePosValid = mousePlane.Raycast(mouseRay, out distance);
+        if (mousePosValid)
+        {
+            mouseWorldPos = mouseRay.GetPoint(distance);
+        }
+
+        if (rotationFollowMouse)
+        {
+            if (mousePosValid)
+            {
+                transform.LookAt(mouseWorldPos);
+            }
+        }
+        else
+        {
+            transform.rotation = Quaternion.identity;
+        }
+
+        // Make sure it doesn't spin on its own
+        rigidbody.angularVelocity = Vector3.zero;
+
         // Shooty logic
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 worldPos = Vector3.zero;
+            // Set up projectile, advance projectile index
+            GameObject projectileGO = projectilePool[projectileIndex];
+            projectileGO.SetActive(true);
+            Projectile projectile = projectileGO.GetComponent<Projectile>();
+            projectile.Setup(this, transform.position, (mouseWorldPos - transform.position).normalized, projectileSpeed, projectileLifetime, 1f);
 
-            // Ensure we intercept mouse pos at the same height as the player
-            mousePlane.SetNormalAndPosition(Vector3.up, new Vector3(0f, transform.position.y, 0f));
-
-            // Shoot a ray to the plane and figure out what that world pos is (fast and efficient, no collider checks)
-            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            float distance;
-            if (mousePlane.Raycast(mouseRay, out distance))
+            if (++projectileIndex >= projectileMaxPoolSize)
             {
-                worldPos = mouseRay.GetPoint(distance);
-                // Debug.DrawLine(Camera.main.ScreenToWorldPoint(Input.mousePosition),
-                //         worldPos, Color.red, 5f);
-            }
-
-            if (projectilesActive < projectileMaxPoolSize)
-            {
-                GameObject projectileGO = projectilePool[projectilesActive];
-                projectileGO.SetActive(true);
-                Projectile projectile = projectileGO.GetComponent<Projectile>();
-                projectile.Setup(this, transform.position, (worldPos - transform.position).normalized, projectileSpeed, projectileLifetime, 1f);
-
-                ++projectilesActive;
-            }
+                projectileIndex -= projectileMaxPoolSize;
+                }
         }
 
-    }
-
-    public void ReportDeadProjectile()
-    {
-        --projectilesActive;
     }
 }
