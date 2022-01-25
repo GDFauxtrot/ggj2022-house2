@@ -20,6 +20,9 @@ public class InventoryManager : MonoBehaviour
     [Header("Inventory Page")]
     [SerializeField] private GameObject inventoryPage;
     [SerializeField] private InventoryItemList itemList;
+    [SerializeField] private Image itemIconImage;
+    private ItemData selectedItem;
+    [SerializeField] private GameObject equipButton;
 
     [Header("Preview Page")]
     [SerializeField] private Image previewEquippedActiveItemIcon;
@@ -62,6 +65,10 @@ public class InventoryManager : MonoBehaviour
         return currentItems;
     }
 
+    public ItemData GetSelectedItem(){
+        return selectedItem;
+    }
+
     public int Find(ItemData item){
         for(int x = 0; x < currentItems.Count; ++x)
         {
@@ -97,7 +104,29 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void UpdateSingleItemUI(InventoryItemUI itemUI, InventoryItem itemInfo){
-        
+    // Select an item in the inventory to view its info
+    public void SelectItem(InventoryItemUI itemUI, ItemData itemData){
+        if(GetNum(itemData) > 0){
+            selectedItem = itemData;
+            UpdateItemInfoPage();
+            itemList.UpdatePage();
+        }
+    }
+
+    // display item's info in info page
+    public void UpdateItemInfoPage(){
+        itemIconImage.gameObject.SetActive(selectedItem != null);
+        if(selectedItem != null){
+            itemIconImage.sprite = selectedItem.sprite;
+            equipButton.SetActive(selectedItem.type == ItemType.activeItem);
+        }
+    }
+
+    public void EquipButton(){
+        if(selectedItem != null && selectedItem.type == ItemType.activeItem)
+        {
+            equippedActiveItem = selectedItem;
+            UpdateInventoryPreview();
+        }
     }
 }
