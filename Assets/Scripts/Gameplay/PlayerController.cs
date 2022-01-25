@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float projectileLifetime;
     [Min(1)]
     public int projectileMaxPoolSize;
+    public Transform projectileSource;
 
     public GameObject projectilePrefab;
     private GameObject projectilePoolParent;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private Plane mousePlane;
     private Vector3 mouseWorldPos;
 
+    [Header("Animation")]
+    public Animator animator;
 
     void Awake()
     {
@@ -54,7 +57,18 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("Projectile pool size has somehow been assigned 0! Make sure to update this value in the inspector to enable shooting");
         }
 
+        if (!projectileSource)
+        {
+            Debug.LogWarning("No projectile source assigned! Using this GameObject's own Transform");
+            projectileSource = transform;
+        }
+
         mousePlane = new Plane(Vector3.up, 0f);
+
+        if (!animator)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
     }
 
     void Start()
@@ -111,11 +125,16 @@ public class PlayerController : MonoBehaviour
                 GameObject projectileGO = projectilePool[projectileIndex];
                 projectileGO.SetActive(true);
                 Projectile projectile = projectileGO.GetComponent<Projectile>();
-                projectile.Setup(this, transform.position, (mouseWorldPos - transform.position).normalized, projectileSpeed, projectileLifetime, 1f);
+                projectile.Setup(this, projectileSource.position, (mouseWorldPos - projectileSource.position).normalized, projectileSpeed, projectileLifetime, 1f);
 
                 if (++projectileIndex >= projectileMaxPoolSize)
                 {
                     projectileIndex -= projectileMaxPoolSize;
+                }
+
+                if (animator)
+                {
+                    animator.SetTrigger("TestTrigger");
                 }
             }
         }
