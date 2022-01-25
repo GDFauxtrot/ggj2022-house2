@@ -134,9 +134,18 @@ public class PlayerController : MonoBehaviour
 
                 if (animator)
                 {
-                    animator.SetTrigger("TestTrigger");
+                    animator.SetBool("HasShot", true);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        animator.SetBool("HasShotDown", true);
+                    }
                 }
             }
+
+            if (!Input.GetMouseButton(0))
+                animator.SetBool("HasShot", false);
+            if (!Input.GetMouseButtonDown(0))
+                animator.SetBool("HasShotDown", false);
         }
 
     }

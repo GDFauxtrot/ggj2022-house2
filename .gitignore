@@ -61,4 +61,4 @@ sysinfo.txt
 crashlytics-build.properties
 
 # Ignore this constantly-updated file
-EditorUserSettings.asset
+/UserSettings/EditorUserSettings.asset
