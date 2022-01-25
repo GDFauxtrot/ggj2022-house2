@@ -233,12 +233,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a97c7e8aaede584ca483c050bf59672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &872292982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a61922418b562f544834ebc691e33f71,
+    type: 3}
+  m_PrefabInstance: {fileID: 1083116098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &997909066 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a61922418b562f544834ebc691e33f71,
     type: 3}
   m_PrefabInstance: {fileID: 1083116098}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &997909067
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872292982}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3fc94bef23c12254298e315f102f12fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1045524971
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,12 +299,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1045524973}
   speed: 5
-  shootFireRate: 10
+  shootFireRate: 5
   projectileSpeed: 10
   projectileLifetime: 2
   projectileMaxPoolSize: 10
+  projectileSource: {fileID: 1045524977}
   projectilePrefab: {fileID: 599152460}
   rotationFollowMouse: 1
+  animator: {fileID: 997909067}
 --- !u!54 &1045524973
 Rigidbody:
   m_ObjectHideFlags: 0
