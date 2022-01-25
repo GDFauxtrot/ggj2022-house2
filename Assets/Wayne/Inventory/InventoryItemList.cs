@@ -9,13 +9,14 @@ public class InventoryItemList : MonoBehaviour
     [SerializeField] private InventoryManager manager;
     private int page = 1;
     
-    void Initialize()
+    public void Initialize()
     {
         page = 1;
+        UpdatePage();
     }
 
     // populate the items on current page
-    void UpdatePage()
+    public void UpdatePage()
     {
         List<InventoryManager.InventoryItem> items = manager.GetItemList();
         int maxPage = ((items.Count - 1) / maxItemPerPage) + 1;

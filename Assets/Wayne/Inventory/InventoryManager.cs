@@ -26,6 +26,10 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI previewEquippedActiveItemNumText;
     private ItemData equippedActiveItem = null;
 
+    void Start(){
+        UpdateInventoryPreview();
+    }
+
     public void AddItem(ItemData item, int num){
         int index = Find(item);
         if(index >= 0)
@@ -76,7 +80,7 @@ public class InventoryManager : MonoBehaviour
 
     public void OpenInventory(){
         inventoryPage.SetActive(true);
-        
+        itemList.Initialize();
     }
 
     public void CloseInventory(){
@@ -91,11 +95,6 @@ public class InventoryManager : MonoBehaviour
             previewEquippedActiveItemIcon.sprite = equippedActiveItem.sprite;
             previewEquippedActiveItemNumText.text = GetNum(equippedActiveItem).ToString();
         }
-    }
-
-    // Populate list of all items in inventory page
-    private void UpdateItemList(){
-
     }
 
     private void UpdateSingleItemUI(InventoryItemUI itemUI, InventoryItem itemInfo){
