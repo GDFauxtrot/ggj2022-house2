@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ShopItem4
   m_EditorClassIdentifier: 
   itemName: 4
+  type: 0
   price: 1231
-  sprite: {fileID: 21300000, guid: 62d8a7def62adee45ae227f7b5dfd9cc, type: 3}
+  sprite: {fileID: 21300000, guid: f71c0dc03d067a342aa16a51674f6507, type: 3}
   iconModel: {fileID: 9120358807487441991, guid: f3fe0e376202719499c9748845056147,
     type: 3}

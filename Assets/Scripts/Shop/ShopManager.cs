@@ -5,8 +5,9 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+    private InventoryManager inventoryManager;
     [Header("Shop Trigger")]
-    [SerializeField] private PlayerController player;
+    private PlayerController player;
     [SerializeField] private Transform cameraTarget;
     [SerializeField] private float showTriggerDistance = 5;
     [SerializeField] private GameObject shopTiggerCanvas;
@@ -28,6 +29,8 @@ public class ShopManager : MonoBehaviour
 
     void Start(){
         InitializeSelectionPanel();
+        inventoryManager = GameObject.FindObjectOfType<InventoryManager>();
+        player = GameObject.FindObjectOfType<PlayerController>();
     }
 
     void Update()
@@ -93,5 +96,9 @@ public class ShopManager : MonoBehaviour
             Destroy(itemIcon);
         itemIcon = Instantiate(itemData.iconModel, itemIconTransform);
         itemIcon.transform.localPosition = Vector3.zero;
+    }
+
+    public void Purchase(){
+        inventoryManager.AddItem(itemSelected, 1);
     }
 }
