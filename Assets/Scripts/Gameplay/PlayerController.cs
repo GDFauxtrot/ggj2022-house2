@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [Header("Projectiles")]
     public float projectileSpeed;
     public float projectileLifetime;
+    [Min(1)]
     public int projectileMaxPoolSize;
 
     public GameObject projectilePrefab;
@@ -35,10 +36,22 @@ public class PlayerController : MonoBehaviour
         projectilePoolParent = new GameObject("Projectile Pool");
         projectilePool = new GameObject[projectileMaxPoolSize];
 
-        for (int i = 0; i < projectileMaxPoolSize; ++i)
+        if (projectilePrefab)
         {
-            projectilePool[i] = GameObject.Instantiate(projectilePrefab, projectilePoolParent.transform);
-            projectilePool[i].SetActive(false);
+            for (int i = 0; i < projectileMaxPoolSize; ++i)
+            {
+                projectilePool[i] = GameObject.Instantiate(projectilePrefab, projectilePoolParent.transform);
+                projectilePool[i].SetActive(false);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No prefab assigned for projectiles! Shooting is disabled");
+        }
+
+        if (projectileMaxPoolSize == 0 && projectilePrefab)
+        {
+            Debug.LogWarning("Projectile pool size has somehow been assigned 0! Make sure to update this value in the inspector to enable shooting");
         }
 
         mousePlane = new Plane(Vector3.up, 0f);
@@ -84,24 +97,27 @@ public class PlayerController : MonoBehaviour
         // Make sure it doesn't spin on its own
         rigidbody.angularVelocity = Vector3.zero;
 
-        // Shooty logic
-        float desiredShootTime = timeSinceLastShot + (1f/shootFireRate);
-        if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && desiredShootTime <= Time.timeSinceLevelLoad))
+        // Shooty logic - if we have a pool and prefab, we can fire
+        if (projectileMaxPoolSize > 0 && projectilePrefab)
         {
-            timeSinceLastShot = Time.timeSinceLevelLoad;
-            if (!Input.GetMouseButtonDown(0))
-                timeSinceLastShot += (desiredShootTime - Time.timeSinceLevelLoad);
-
-            // Set up projectile, advance projectile index
-            GameObject projectileGO = projectilePool[projectileIndex];
-            projectileGO.SetActive(true);
-            Projectile projectile = projectileGO.GetComponent<Projectile>();
-            projectile.Setup(this, transform.position, (mouseWorldPos - transform.position).normalized, projectileSpeed, projectileLifetime, 1f);
-
-            if (++projectileIndex >= projectileMaxPoolSize)
+            float desiredShootTime = timeSinceLastShot + (1f/shootFireRate);
+            if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && desiredShootTime <= Time.timeSinceLevelLoad))
             {
-                projectileIndex -= projectileMaxPoolSize;
+                timeSinceLastShot = Time.timeSinceLevelLoad;
+                if (!Input.GetMouseButtonDown(0))
+                    timeSinceLastShot += (desiredShootTime - Time.timeSinceLevelLoad);
+
+                // Set up projectile, advance projectile index
+                GameObject projectileGO = projectilePool[projectileIndex];
+                projectileGO.SetActive(true);
+                Projectile projectile = projectileGO.GetComponent<Projectile>();
+                projectile.Setup(this, transform.position, (mouseWorldPos - transform.position).normalized, projectileSpeed, projectileLifetime, 1f);
+
+                if (++projectileIndex >= projectileMaxPoolSize)
+                {
+                    projectileIndex -= projectileMaxPoolSize;
                 }
+            }
         }
 
     }

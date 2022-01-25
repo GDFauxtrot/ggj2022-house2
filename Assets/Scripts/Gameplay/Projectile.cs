@@ -38,5 +38,7 @@ public class Projectile : MonoBehaviour
         lifetime = maxLifetime;
         lifetimeStart = Time.timeSinceLevelLoad;
         damageValue = damage;
+
+        transform.LookAt(transform.position + direction);
     }
 }
