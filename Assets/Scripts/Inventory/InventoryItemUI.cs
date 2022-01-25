@@ -28,12 +28,6 @@ public class InventoryItemUI : MonoBehaviour
     public void OnClick()
     {
         manager.SelectItem(this, itemData);
-        selectIndicator.SetActive(true);
-    }
-
-    public void Unselect()
-    {
-        selectIndicator.SetActive(false);
     }
 
     public void OnMouseEnter()
@@ -44,5 +38,9 @@ public class InventoryItemUI : MonoBehaviour
     public void OnMouseExit()
     {
         hoverIndicator.SetActive(false);
+    }
+
+    public void SetSelectorActive(bool value){
+        selectIndicator.SetActive(value);
     }
 }

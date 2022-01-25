@@ -21,7 +21,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject inventoryPage;
     [SerializeField] private InventoryItemList itemList;
     [SerializeField] private Image itemIconImage;
-    private InventoryItemUI selectedItemUI;
     private ItemData selectedItem;
     [SerializeField] private GameObject equipButton;
 
@@ -66,6 +65,10 @@ public class InventoryManager : MonoBehaviour
         return currentItems;
     }
 
+    public ItemData GetSelectedItem(){
+        return selectedItem;
+    }
+
     public int Find(ItemData item){
         for(int x = 0; x < currentItems.Count; ++x)
         {
@@ -103,12 +106,10 @@ public class InventoryManager : MonoBehaviour
 
     // Select an item in the inventory to view its info
     public void SelectItem(InventoryItemUI itemUI, ItemData itemData){
-        if(selectedItemUI != null) 
-            selectedItemUI.Unselect();
-        selectedItemUI = itemUI;
         if(GetNum(itemData) > 0){
             selectedItem = itemData;
             UpdateItemInfoPage();
+            itemList.UpdatePage();
         }
     }
 
