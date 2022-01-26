@@ -5,7 +5,7 @@ public enum ItemType{
     questItem
 }
 
-[CreateAssetMenu(fileName = "Item", menuName = "Data/Item", order = 1)]
+[CreateAssetMenu(fileName = "ItemData", menuName = "Data/ItemData", order = 1)]
 public class ItemData : ScriptableObject
 {
     public string itemName;
