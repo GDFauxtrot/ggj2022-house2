@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50d448b23c7d224eaf6ee266c62951f, type: 3}
+  m_Name: enemy1
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  attack: 2
+  movingSpeed: 0
+  lootMoneyMin: 1
+  lootMoneyMax: 10
+  lootItems:
+  - item: {fileID: 11400000, guid: 62c533ffc32793147a985f3c747870fe, type: 2}
+    droppingRate: 0.02
