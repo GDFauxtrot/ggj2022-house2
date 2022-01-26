@@ -83,6 +83,13 @@ public class PlayerController : MonoBehaviour
                 Input.GetAxisRaw("Horizontal") * speed,
                 rigidbody.velocity.y,
                 Input.GetAxisRaw("Vertical") * speed), speed);
+        
+        // Animate alongside movement
+        if (animator)
+        {
+            bool moving = !Mathf.Approximately(Input.GetAxisRaw("Horizontal"), 0f) || !Mathf.Approximately(Input.GetAxisRaw("Vertical"), 0f);
+            animator.SetBool("IsMoving", moving);
+        }
 
 
         // Get mouse world pos - update intercept plane, shoot ray and get result
@@ -114,39 +121,49 @@ public class PlayerController : MonoBehaviour
         // Shooty logic - if we have a pool and prefab, we can fire
         if (projectileMaxPoolSize > 0 && projectilePrefab)
         {
+            // Cache operations (faster)
+            bool mouse = Input.GetMouseButton(0);
+            bool mouseDown = Input.GetMouseButtonDown(0);
+
             float desiredShootTime = timeSinceLastShot + (1f/shootFireRate);
-            if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && desiredShootTime <= Time.timeSinceLevelLoad))
+            if (mouseDown || (mouse && desiredShootTime <= Time.timeSinceLevelLoad))
             {
                 timeSinceLastShot = Time.timeSinceLevelLoad;
-                if (!Input.GetMouseButtonDown(0))
+                if (!mouseDown)
                     timeSinceLastShot += (desiredShootTime - Time.timeSinceLevelLoad);
+
+                // Figure out projectile direction normalized, discard Y (up/down)
+                Vector3 projectileDir = (mouseWorldPos - projectileSource.position);
+                projectileDir.y = 0f;
+                projectileDir.Normalize();
 
                 // Set up projectile, advance projectile index
                 GameObject projectileGO = projectilePool[projectileIndex];
                 projectileGO.SetActive(true);
                 Projectile projectile = projectileGO.GetComponent<Projectile>();
-                projectile.Setup(this, projectileSource.position, (mouseWorldPos - projectileSource.position).normalized, projectileSpeed, projectileLifetime, 1f);
+                projectile.Setup(this, projectileSource.position, projectileDir, projectileSpeed, projectileLifetime, 1f);
 
                 if (++projectileIndex >= projectileMaxPoolSize)
                 {
                     projectileIndex -= projectileMaxPoolSize;
                 }
 
+                // Set animation variables
                 if (animator)
                 {
                     animator.SetBool("HasShot", true);
-                    if (Input.GetMouseButtonDown(0))
+                    if (mouseDown)
                     {
                         animator.SetBool("HasShotDown", true);
                     }
                 }
             }
 
-            if (!Input.GetMouseButton(0))
+            // Reset animation variables
+            if (!mouse)
                 animator.SetBool("HasShot", false);
-            if (!Input.GetMouseButtonDown(0))
+            if (!mouseDown)
                 animator.SetBool("HasShotDown", false);
         }
-
     }
 }
