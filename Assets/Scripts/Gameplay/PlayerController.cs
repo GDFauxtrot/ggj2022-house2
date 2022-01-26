@@ -83,6 +83,13 @@ public class PlayerController : MonoBehaviour
                 Input.GetAxisRaw("Horizontal") * speed,
                 rigidbody.velocity.y,
                 Input.GetAxisRaw("Vertical") * speed), speed);
+        
+        // Animate alongside movement
+        if (animator)
+        {
+            bool moving = !Mathf.Approximately(Input.GetAxisRaw("Horizontal"), 0f) || !Mathf.Approximately(Input.GetAxisRaw("Vertical"), 0f);
+            animator.SetBool("IsMoving", moving);
+        }
 
 
         // Get mouse world pos - update intercept plane, shoot ray and get result
