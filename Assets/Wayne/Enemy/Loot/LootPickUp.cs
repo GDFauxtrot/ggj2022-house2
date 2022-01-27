@@ -20,8 +20,8 @@ public class LootPickUp : MonoBehaviour
     private ItemData itemData;
     [SerializeField] private Rigidbody rigid;
     [SerializeField] private Collider lootCollider;
-    [SerializeField] private float pickUpDistance = 15;
-    [SerializeField] private float attactMovingSpeed = 10;
+    [SerializeField] private float pickUpDistance = 10;
+    [SerializeField] private float attractMovingSpeed = 40;
     private float initializationTime = 1;
     private float initializationTimer;
     private GameObject player;
@@ -53,7 +53,9 @@ public class LootPickUp : MonoBehaviour
             case(State.AttractToPlayer):{
                 Vector3 diff = player.transform.position - gameObject.transform.position;
                 float distance = diff.magnitude;
-                rigid.velocity = (attactMovingSpeed * Time.deltaTime * 60 * diff.normalized);
+                rigid.AddForce(attractMovingSpeed * Time.deltaTime * 60 * diff.normalized, ForceMode.Acceleration);
+                //make sure velocity always points to the player, otherwise pickup might orbit around player
+                rigid.velocity = diff.normalized * rigid.velocity.magnitude;
                 break;
             }
         }

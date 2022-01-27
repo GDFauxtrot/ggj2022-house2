@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   attack: 2
-  movingSpeed: 0
+  movingSpeed: 2
   lootMoneyMin: 1
   lootMoneyMax: 10
   lootItems:
