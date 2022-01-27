@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5028217750394078517}
   - component: {fileID: 5028217750394078520}
   - component: {fileID: 5028217750394078519}
-  - component: {fileID: 5028217750394078518}
   m_Layer: 9
   m_Name: model
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5028217750394078518
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028217750394078516}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5028217750744011732
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +96,8 @@ GameObject:
   - component: {fileID: 5028217750744011736}
   - component: {fileID: 5028217750744011733}
   - component: {fileID: 9218742221920959947}
+  - component: {fileID: 8656430337413083240}
+  - component: {fileID: 5028101680483199000}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -193,3 +181,33 @@ MonoBehaviour:
   movementType: 1
   data: {fileID: 11400000, guid: 74a95f63ff0ae4447bde11d5bfa75b21, type: 2}
   rigid: {fileID: 5028217750744011736}
+--- !u!114 &8656430337413083240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028217750744011732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2736841c1b22a7744afe13aaab8b0391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPref: {fileID: 7472460837400284858, guid: f597d5037a454144e925a42c3949e1c9,
+    type: 3}
+  enemyData: {fileID: 11400000, guid: 74a95f63ff0ae4447bde11d5bfa75b21, type: 2}
+  shootIntervalMin: 3
+  shootIntervalMax: 5
+--- !u!135 &5028101680483199000
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028217750744011732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
