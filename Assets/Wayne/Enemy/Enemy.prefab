@@ -106,9 +106,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5028217750744011734}
-  - component: {fileID: 5028217750744011733}
   - component: {fileID: 5028217750744011735}
   - component: {fileID: 5028217750744011736}
+  - component: {fileID: 5028217750744011733}
+  - component: {fileID: 9218742221920959947}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -132,21 +133,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5028217750744011733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028217750744011732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8fd8a2e12909ed45bcef43cb2c41ac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 74a95f63ff0ae4447bde11d5bfa75b21, type: 2}
-  lootPref: {fileID: 4698372660785135087, guid: 800f43ca72b49d54f9974bbec7d33c6b,
-    type: 3}
 --- !u!136 &5028217750744011735
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -177,3 +163,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5028217750744011733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028217750744011732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8fd8a2e12909ed45bcef43cb2c41ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 74a95f63ff0ae4447bde11d5bfa75b21, type: 2}
+  lootPref: {fileID: 4698372660785135087, guid: 800f43ca72b49d54f9974bbec7d33c6b,
+    type: 3}
+--- !u!114 &9218742221920959947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028217750744011732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee713b0fd5d53140a6c598ba2ed80c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementType: 1
+  data: {fileID: 11400000, guid: 74a95f63ff0ae4447bde11d5bfa75b21, type: 2}
+  rigid: {fileID: 5028217750744011736}
