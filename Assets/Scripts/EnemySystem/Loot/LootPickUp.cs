@@ -27,6 +27,11 @@ public class LootPickUp : MonoBehaviour
     private GameObject player;
     private MoneyManager moneyManager;
     private InventoryManager inventoryManager;
+    private ObjectPool lootPickUpPool;
+
+    void Start(){
+        lootPickUpPool = FindObjectOfType<EnemyManager>().LootPickUpPool;
+    }
 
     // Update is called once per frame
     void Update()
@@ -61,19 +66,19 @@ public class LootPickUp : MonoBehaviour
         }
     }
 
-    public void InitializeMoneyLoot(int moneyAmount){
+    public void InitializeMoneyLoot(int moneyAmount, Vector3 position){
         type = LootType.Money;
         this.moneyAmount = moneyAmount;
-        Initialize();
+        Initialize(position);
     }
 
-    public void InitializeItemLoot(ItemData itemData){
+    public void InitializeItemLoot(ItemData itemData, Vector3 position){
         type = LootType.Item;
         this.itemData = itemData;
-        Initialize();
+        Initialize(position);
     }
 
-    private void Initialize(){
+    private void Initialize(Vector3 position){
         initializationTimer = 0;
         player = FindObjectOfType<PlayerController>().gameObject;
         moneyManager = FindObjectOfType<MoneyManager>();
@@ -82,15 +87,17 @@ public class LootPickUp : MonoBehaviour
         lootCollider.isTrigger = false;
         rigid.useGravity = true;
         // fly towards a random direction when item drops
-        Vector3 force = Vector3.up + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-        rigid.AddForce(force.normalized * 5, ForceMode.Impulse);
+        transform.position = position;
+        Vector3 force = Vector3.up * 1.5f + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+        rigid.velocity = Vector3.zero;
+        rigid.AddForce(force.normalized * Random.Range(4f, 8f), ForceMode.Impulse);
     }
 
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject == player)
         {
             OnPickUp();
-            Destroy(this.gameObject);
+            lootPickUpPool.Recycle(gameObject);
         }
     }
 
