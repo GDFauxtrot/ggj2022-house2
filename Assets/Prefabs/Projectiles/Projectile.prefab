@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5306071454652179907}
   - component: {fileID: 4830570351575172176}
-  m_Layer: 0
+  - component: {fileID: 1438195074896772375}
+  m_Layer: 7
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a97c7e8aaede584ca483c050bf59672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1438195074896772375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993671497581686001}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &9067608701688749768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +140,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BasicHouseProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 97b99310ad0be174bbb1293b34771fa4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97b99310ad0be174bbb1293b34771fa4, type: 3}
