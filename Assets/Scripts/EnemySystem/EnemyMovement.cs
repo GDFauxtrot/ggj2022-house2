@@ -34,6 +34,10 @@ public class EnemyMovement : MonoBehaviour
         Vector3 diff = player.transform.position - gameObject.transform.position;
         diff.y = 0;
         rigid.velocity = diff.normalized * data.movingSpeed;
+        // look at player
+        Vector3 lookAtPos = player.transform.position;
+        lookAtPos.y = transform.position.y;
+        transform.LookAt(lookAtPos);
     }
 
     

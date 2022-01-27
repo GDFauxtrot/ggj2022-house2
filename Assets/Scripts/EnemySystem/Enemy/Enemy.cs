@@ -9,12 +9,14 @@ public class Enemy : MonoBehaviour
     private int health;
     [Header("Loot")]
     [SerializeField] private GameObject lootPref;
+    private ObjectPool lootPickUpPool;
 
     void Start(){
         Initialize();
     }
 
     public void Initialize(){
+        lootPickUpPool = FindObjectOfType<EnemyManager>().LootPickUpPool;
         gameObject.SetActive(true);
         health = data.maxHealth;
     } 
@@ -41,17 +43,17 @@ public class Enemy : MonoBehaviour
     private void DropLoots(){
         // drop Money
         int moneyLoot = Random.Range(data.lootMoneyMin, data.lootMoneyMax);
-        if(moneyLoot > 0){
-            GameObject lootObj = Instantiate(lootPref, transform.position, Quaternion.identity);
-            lootObj.GetComponent<LootPickUp>().InitializeMoneyLoot(moneyLoot);
+        for(int x = 0; x < moneyLoot; ++x){
+            GameObject lootObj = lootPickUpPool.GetObject();
+            lootObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
         }
 
         // drop Items
         foreach(LootItemData lootData in data.lootItems){
             if(Random.Range(0, 1f) <= lootData.droppingRate)
             {
-                GameObject lootObj = Instantiate(lootPref, transform.position, Quaternion.identity);
-                lootObj.GetComponent<LootPickUp>().InitializeItemLoot(lootData.item);
+                GameObject lootObj = lootPickUpPool.GetObject();
+                lootObj.GetComponent<LootPickUp>().InitializeItemLoot(lootData.item, transform.position + Vector3.up);
             }
         }
     }
