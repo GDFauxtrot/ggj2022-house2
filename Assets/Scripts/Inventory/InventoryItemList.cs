@@ -8,7 +8,6 @@ public class InventoryItemList : MonoBehaviour
     [Header("Items")]
     [SerializeField] private int maxItemPerPage;
     [SerializeField] private List<InventoryItemUI> itemUIs;
-    [SerializeField] private InventoryManager manager;
     
     [Header("page")]
     [SerializeField] private GameObject pageIcon;
@@ -30,15 +29,15 @@ public class InventoryItemList : MonoBehaviour
     // populate the items on current page
     public void UpdatePage()
     {
-        List<InventoryManager.InventoryItem> items = manager.GetItemList();
+        List<InventoryManager.InventoryItem> items = InventoryManager.Instance.GetItemList();
         page = Mathf.Min(page, GetMaxPage());
         int startIndex = maxItemPerPage * (page - 1);
         int displayItemNums = startIndex + maxItemPerPage >= items.Count ? items.Count - startIndex : maxItemPerPage;
         for(int i = 0; i < displayItemNums; ++i){
             InventoryManager.InventoryItem itemData = items[startIndex + i];
             itemUIs[i].gameObject.SetActive(true);
-            itemUIs[i].Initialize(manager, itemData.item, itemData.num);
-            itemUIs[i].SetSelectorActive(itemData.item == manager.GetSelectedItem());
+            itemUIs[i].Initialize(itemData.item, itemData.num);
+            itemUIs[i].SetSelectorActive(itemData.item == InventoryManager.Instance.GetSelectedItem());
         }
         for(int i = displayItemNums; i < maxItemPerPage; ++i){
             itemUIs[i].gameObject.SetActive(false);
@@ -86,7 +85,7 @@ public class InventoryItemList : MonoBehaviour
     }
 
     public int GetMaxPage(){
-        List<InventoryManager.InventoryItem> items = manager.GetItemList();
+        List<InventoryManager.InventoryItem> items = InventoryManager.Instance.GetItemList();
         return ((items.Count - 1) / maxItemPerPage) + 1;
     }
 }
