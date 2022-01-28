@@ -1681,11 +1681,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1544459379, guid: 551e97422b9569b4e93978b8ef307861, type: 3}
       propertyPath: volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544459379, guid: 551e97422b9569b4e93978b8ef307861, type: 3}
-      propertyPath: pitchStart
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7515701754950273861, guid: 551e97422b9569b4e93978b8ef307861,
         type: 3}
