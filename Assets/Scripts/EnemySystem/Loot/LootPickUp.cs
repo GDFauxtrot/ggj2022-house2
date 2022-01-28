@@ -80,6 +80,7 @@ public class LootPickUp : MonoBehaviour
 
     private void Initialize(Vector3 position){
         initializationTimer = 0;
+        initializationTime = Random.Range(0.5f,1.5f);
         player = FindObjectOfType<PlayerController>().gameObject;
         moneyManager = FindObjectOfType<MoneyManager>();
         inventoryManager = FindObjectOfType<InventoryManager>();
@@ -88,7 +89,7 @@ public class LootPickUp : MonoBehaviour
         rigid.useGravity = true;
         // fly towards a random direction when item drops
         transform.position = position;
-        Vector3 force = Vector3.up * 1.5f + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+        Vector3 force = Vector3.up * initializationTime + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
         rigid.velocity = Vector3.zero;
         rigid.AddForce(force.normalized * Random.Range(4f, 8f), ForceMode.Impulse);
     }

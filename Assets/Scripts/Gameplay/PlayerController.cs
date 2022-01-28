@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [Header("Animation")]
     public Animator animator;
 
+    [Header("SoundEffects")]
+    public RandomAudioPlayer shootAudio;
+
     void Awake()
     {
         projectilePoolParent = new GameObject("Projectile Pool");
@@ -142,6 +145,7 @@ public class PlayerController : MonoBehaviour
                 projectileGO.SetActive(true);
                 Projectile projectile = projectileGO.GetComponent<Projectile>();
                 projectile.Setup(this, projectileSource.position, projectileDir, projectileSpeed, projectileLifetime, 1f);
+                if(shootAudio)shootAudio.PlayRandomClip();
 
                 if (++projectileIndex >= projectileMaxPoolSize)
                 {

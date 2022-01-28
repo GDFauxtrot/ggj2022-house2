@@ -35,9 +35,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Die(){
+    public virtual void Die(){
         DropLoots();
         Destroy(gameObject);
+        // transform.position = Vector3.zero;
+        // Initialize();
     }
 
     private void DropLoots(){

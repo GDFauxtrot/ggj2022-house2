@@ -33,7 +33,9 @@ public class EnemyMovement : MonoBehaviour
     private void ApproachPlayer(){
         Vector3 diff = player.transform.position - gameObject.transform.position;
         diff.y = 0;
-        rigid.velocity = diff.normalized * data.movingSpeed;
+        Vector3 velocity = diff.normalized * data.movingSpeed;
+        velocity.y = rigid.velocity.y;
+        rigid.velocity = velocity;
         // look at player
         Vector3 lookAtPos = player.transform.position;
         lookAtPos.y = transform.position.y;
