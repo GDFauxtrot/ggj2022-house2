@@ -1439,22 +1439,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5028217750394078516, guid: 65a9c0b2f67cd4a48975c3005ad8654a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5028217750744011732, guid: 65a9c0b2f67cd4a48975c3005ad8654a,
         type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5028217750744011733, guid: 65a9c0b2f67cd4a48975c3005ad8654a,
-        type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 781fa70b04b1d4a4bb6b4122e320bda3,
-        type: 2}
     - target: {fileID: 5028217750744011734, guid: 65a9c0b2f67cd4a48975c3005ad8654a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1679,10 +1668,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1544459379, guid: 551e97422b9569b4e93978b8ef307861, type: 3}
-      propertyPath: volume
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 7515701754950273861, guid: 551e97422b9569b4e93978b8ef307861,
         type: 3}
       propertyPath: m_RootOrder

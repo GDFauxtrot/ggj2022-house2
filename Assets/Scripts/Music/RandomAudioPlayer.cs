@@ -52,8 +52,6 @@ public class RandomAudioPlayer : MonoBehaviour
     void Awake()
     {
         m_Audiosources = GetComponentsInChildren<AudioSource>();
-        Debug.Log(m_Audiosources.Length);
-        // m_Audiosource = GetComponent<AudioSource>();
         for (int i = 0; i < overrides.Length; i++)
         {
             foreach (var material in overrides[i].materials) {
@@ -110,8 +108,6 @@ public class RandomAudioPlayer : MonoBehaviour
             return null;
         
         AudioSource audioSource = NextAudioSource();
-        Debug.Log(audioSource);
-        Debug.Log(audioSourcesIndex);
         if(randomizePitch) {
             audioSource.pitch = Random.Range(pitchStart - pitchRandomRange, pitchStart + pitchRandomRange);
         } else {

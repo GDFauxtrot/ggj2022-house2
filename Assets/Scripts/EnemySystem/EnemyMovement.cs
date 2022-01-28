@@ -13,9 +13,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private EnemyData data;
     [SerializeField] private Rigidbody rigid;
     private GameObject player;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerController>().gameObject;
     }
 
@@ -40,6 +42,7 @@ public class EnemyMovement : MonoBehaviour
         Vector3 lookAtPos = player.transform.position;
         lookAtPos.y = transform.position.y;
         transform.LookAt(lookAtPos);
+        animator.SetFloat("MoveSpeed", velocity.magnitude);
     }
 
     

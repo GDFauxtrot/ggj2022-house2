@@ -10,8 +10,12 @@ public class Enemy : MonoBehaviour
     [Header("Loot")]
     [SerializeField] private GameObject lootPref;
     private ObjectPool lootPickUpPool;
+    [Header("SoundEffects")]
+    public RandomAudioPlayer HitSound;
+    private Animator animator;
 
     void Start(){
+        animator = GetComponentInChildren<Animator>();
         Initialize();
     }
 
@@ -26,11 +30,13 @@ public class Enemy : MonoBehaviour
         if(health <= 0){
             Die();
         }
+        animator.SetBool("Damaged", true);
     }
 
     private void OnTriggerEnter(Collider collider){
         if(collider.GetComponent<Projectile>()){
             collider.gameObject.SetActive(false);
+            if(HitSound) HitSound.PlayRandomClip();
             TakeDamage(5);
         }
     }
