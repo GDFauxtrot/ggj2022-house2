@@ -62,3 +62,4 @@ crashlytics-build.properties
 
 # Ignore this constantly-updated file
 /UserSettings/EditorUserSettings.asset
+/UserSettings/*
