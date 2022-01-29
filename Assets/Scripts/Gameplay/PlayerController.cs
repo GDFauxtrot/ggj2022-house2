@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action PlayerDiedEvent;
+    public static event Action PlayerHurtEvent;
+
     [Header("Movement")]
     public Rigidbody rigidbody;
     public float speed;
@@ -37,6 +41,12 @@ public class PlayerController : MonoBehaviour
     [Header("SoundEffects")]
     public RandomAudioPlayer shootAudio;
 
+    [Header("Health")]
+    [Min(1)]
+    public int maxHealth;
+    public static int health; // Since multiple players can exist
+
+    
     void Awake()
     {
         projectilePoolParent = new GameObject("Projectile Pool");
@@ -72,11 +82,21 @@ public class PlayerController : MonoBehaviour
         {
             animator = GetComponentInChildren<Animator>();
         }
+
+        if (health < maxHealth) // In case of maxHealth-assigned inconsistency between instances
+            health = maxHealth;
+
+        PlayerDiedEvent += PlayerDied;
     }
 
     void Start()
     {
         CameraController.SetCurrentTarget(transform);
+    }
+
+    void OnDestroy()
+    {
+        PlayerDiedEvent -= PlayerDied;
     }
 
     void Update()
@@ -169,5 +189,40 @@ public class PlayerController : MonoBehaviour
             if (!mouseDown)
                 animator.SetBool("HasShotDown", false);
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
+        {
+            // Recycle enemy projectile, reduce health
+            EnemyManager.Instance.EnemyBulletPool.Recycle(other.gameObject);
+
+            HurtPlayerOnce();
+        }
+    }
+
+    // Public so that other things can trigger it as well (damaging floors, status effects, etc?)
+    public void HurtPlayerOnce()
+    {
+        // Decrease health by 1, as advertised. Trigger events as well
+        health -= 1;
+        PlayerHurtEvent();
+        ProcessDead();
+    }
+
+    void ProcessDead()
+    {
+        if (health > 0)
+            return;
+        
+        // Invoke player death. All interested objects can get notified and do logic (including this one)
+        PlayerDiedEvent();
+    }
+
+    void PlayerDied()
+    {
+        // Player is the kill. Do a dead.
+        gameObject.SetActive(false);
     }
 }

@@ -663,6 +663,8 @@ MonoBehaviour:
   rotationFollowMouse: 1
   animator: {fileID: 7515701754868848895}
   shootAudio: {fileID: 1544459379}
+  maxHealth: 3
+  health: 0
 --- !u!114 &7513873610207469813
 MonoBehaviour:
   m_ObjectHideFlags: 0
