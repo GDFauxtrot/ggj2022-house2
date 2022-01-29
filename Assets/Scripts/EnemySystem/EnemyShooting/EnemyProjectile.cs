@@ -19,7 +19,7 @@ public class EnemyProjectile : MonoBehaviour
             lifetimer += Time.deltaTime;
             if (lifetimer > lifetime)
             {
-                FindObjectOfType<EnemyManager>().EnemyBulletPool.Recycle(gameObject);
+                EnemyManager.Instance.EnemyBulletPool.Recycle(gameObject);
             }
         }
     }
