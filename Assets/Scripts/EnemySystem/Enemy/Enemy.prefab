@@ -56,7 +56,7 @@ MonoBehaviour:
   playing: 0
   canPlay: 0
   pitchStart: 1
-  volume: 0.2
+  volume: 0.3
 --- !u!82 &890183348
 AudioSource:
   m_ObjectHideFlags: 0
