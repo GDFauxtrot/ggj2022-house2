@@ -82,10 +82,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Super basic movement
-        rigidbody.velocity = Vector3.ClampMagnitude(new Vector3(
+        Vector3 vel =  Vector3.ClampMagnitude(new Vector3(
                 Input.GetAxisRaw("Horizontal") * speed,
-                rigidbody.velocity.y,
+                0,
                 Input.GetAxisRaw("Vertical") * speed), speed);
+        vel.y = rigidbody.velocity.y;
+        rigidbody.velocity = vel;
         
         // Animate alongside movement
         if (animator)
