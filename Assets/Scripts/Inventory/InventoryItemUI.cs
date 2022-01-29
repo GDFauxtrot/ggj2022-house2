@@ -10,12 +10,10 @@ public class InventoryItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numText;
     [SerializeField] private GameObject selectIndicator;
     [SerializeField] private GameObject hoverIndicator;
-    private InventoryManager manager;
     private ItemData itemData;
 
-    public void Initialize(InventoryManager manager, ItemData itemData, int num){
+    public void Initialize(ItemData itemData, int num){
         this.itemData = itemData;
-        this.manager = manager;
         UpdateInfo(itemData, num);
     }
 
@@ -27,7 +25,7 @@ public class InventoryItemUI : MonoBehaviour
 
     public void OnClick()
     {
-        manager.SelectItem(this, itemData);
+        InventoryManager.Instance.SelectItem(this, itemData);
     }
 
     public void OnMouseEnter()

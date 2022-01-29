@@ -26,7 +26,6 @@ public class LootPickUp : MonoBehaviour
     private float initializationTimer;
     private GameObject player;
     private MoneyManager moneyManager;
-    private InventoryManager inventoryManager;
     private ObjectPool lootPickUpPool;
 
     void Start(){
@@ -83,7 +82,6 @@ public class LootPickUp : MonoBehaviour
         initializationTime = Random.Range(0.5f,1.5f);
         player = FindObjectOfType<PlayerController>().gameObject;
         moneyManager = FindObjectOfType<MoneyManager>();
-        inventoryManager = FindObjectOfType<InventoryManager>();
         state = State.Initialization;
         lootCollider.isTrigger = false;
         rigid.useGravity = true;
@@ -107,7 +105,7 @@ public class LootPickUp : MonoBehaviour
         {
             moneyManager.AddMoney(moneyAmount);
         }else{
-            inventoryManager.AddItem(itemData, 1);
+            InventoryManager.Instance.AddItem(itemData, 1);
         }
     }
 
