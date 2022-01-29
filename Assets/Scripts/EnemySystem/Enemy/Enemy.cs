@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     private int health;
     [Header("Loot")]
     [SerializeField] private GameObject lootPref;
-    private ObjectPool lootPickUpPool;
     [Header("SoundEffects")]
     public RandomAudioPlayer HitSound;
     private Animator animator;
@@ -20,7 +19,6 @@ public class Enemy : MonoBehaviour
     }
 
     public void Initialize(){
-        lootPickUpPool = FindObjectOfType<EnemyManager>().LootPickUpPool;
         gameObject.SetActive(true);
         health = data.maxHealth;
     } 
@@ -52,7 +50,7 @@ public class Enemy : MonoBehaviour
         // drop Money
         int moneyLoot = Random.Range(data.lootMoneyMin, data.lootMoneyMax);
         for(int x = 0; x < moneyLoot; ++x){
-            GameObject lootObj = lootPickUpPool.GetObject();
+            GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
             lootObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
         }
 
@@ -60,7 +58,7 @@ public class Enemy : MonoBehaviour
         foreach(LootItemData lootData in data.lootItems){
             if(Random.Range(0, 1f) <= lootData.droppingRate)
             {
-                GameObject lootObj = lootPickUpPool.GetObject();
+                GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
                 lootObj.GetComponent<LootPickUp>().InitializeItemLoot(lootData.item, transform.position + Vector3.up);
             }
         }
