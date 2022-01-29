@@ -69,6 +69,10 @@ public class InventoryManager : Singleton<InventoryManager>
         return selectedItem;
     }
 
+    public ItemData GetEquippedItem(){
+        return equippedActiveItem;
+    }
+
     public int Find(ItemData item){
         for(int x = 0; x < currentItems.Count; ++x)
         {

@@ -15,4 +15,8 @@ public class WayneTest : MonoBehaviour
     {
         
     }
+
+    public void Test(){
+        Debug.Log("Item Used");
+    }
 }
