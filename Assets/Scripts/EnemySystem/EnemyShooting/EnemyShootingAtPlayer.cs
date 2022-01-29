@@ -6,6 +6,7 @@ public class EnemyShootingAtPlayer : EnemyShootingBase
 {
     private Animator animator;
     private void Start() {
+        base.Start();
         animator = GetComponentInChildren<Animator>();
     }
     protected override void Shoot()

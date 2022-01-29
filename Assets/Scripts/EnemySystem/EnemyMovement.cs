@@ -43,6 +43,7 @@ public class EnemyMovement : MonoBehaviour
         lookAtPos.y = transform.position.y;
         transform.LookAt(lookAtPos);
         animator.SetFloat("MoveSpeed", velocity.magnitude);
+        animator.SetBool("IsMoving", true);
     }
 
     

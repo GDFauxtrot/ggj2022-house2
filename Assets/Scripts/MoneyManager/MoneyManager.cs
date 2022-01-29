@@ -9,6 +9,7 @@ public class MoneyManager : MonoBehaviour
     private int displayedMoney = 0; 
     private float timer = 0;
     private int money = 0;
+    public RandomAudioPlayer collectMoneySound;
 
     void Start(){
         displayedMoney = money;
@@ -25,6 +26,7 @@ public class MoneyManager : MonoBehaviour
 
     public void AddMoney(int value){
         money += value;
+        collectMoneySound.PlayRandomClip();
     }
 
     public void ReduceMoney(int value){
