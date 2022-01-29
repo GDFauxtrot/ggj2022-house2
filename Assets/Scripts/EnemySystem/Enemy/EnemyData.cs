@@ -10,6 +10,7 @@ public class EnemyData : ScriptableObject
     public int lootMoneyMin;
     public int lootMoneyMax;
     public List<LootItemData> lootItems = new List<LootItemData>();
+    public float shootingRange;
 }
 
 [System.Serializable]

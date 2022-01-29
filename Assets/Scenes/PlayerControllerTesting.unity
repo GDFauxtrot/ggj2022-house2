@@ -485,8 +485,8 @@ MonoBehaviour:
   overheadAngle: 45
   interpolationValue: 5
   distance: 20
-  snapPosXToTarget: 0
-  lockRotToTarget: 0
+  snapPosXToTarget: 1
+  lockRotToTarget: 1
   screenShakeAmount: 0
   screenShakeSpeed: 50
   screenShakeFalloff: 0.2

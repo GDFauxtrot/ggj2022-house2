@@ -19,6 +19,13 @@ public class EnemyMovement : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         player = FindObjectOfType<PlayerController>().gameObject;
+
+        PlayerController.PlayerDiedEvent += PlayerDied;
+    }
+
+    void OnDestroy()
+    {
+        PlayerController.PlayerDiedEvent -= PlayerDied;
     }
 
     // Update is called once per frame
@@ -46,5 +53,8 @@ public class EnemyMovement : MonoBehaviour
         animator.SetBool("IsMoving", true);
     }
 
-    
+    void PlayerDied()
+    {
+        movementType = MovementType.Idle;
+    }
 }
