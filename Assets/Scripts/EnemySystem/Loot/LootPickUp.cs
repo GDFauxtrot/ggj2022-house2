@@ -26,10 +26,8 @@ public class LootPickUp : MonoBehaviour
     private float initializationTimer;
     private GameObject player;
     private MoneyManager moneyManager;
-    private ObjectPool lootPickUpPool;
 
     void Start(){
-        lootPickUpPool = FindObjectOfType<EnemyManager>().LootPickUpPool;
     }
 
     // Update is called once per frame
@@ -96,7 +94,7 @@ public class LootPickUp : MonoBehaviour
         if(collider.gameObject == player)
         {
             OnPickUp();
-            lootPickUpPool.Recycle(gameObject);
+            EnemyManager.Instance.LootPickUpPool.Recycle(gameObject);
         }
     }
 

@@ -10,14 +10,12 @@ public abstract class EnemyShootingBase : MonoBehaviour
     [SerializeField] protected float shootIntervalMax = 5;
     protected float shootInterval;
     protected float shootTimer = 0;
-    protected ObjectPool bulletPool;
     protected GameObject player;
 
     protected virtual void Start()
     {
         player = FindObjectOfType<PlayerController>().gameObject;
         shootInterval = Random.Range(shootIntervalMin, shootIntervalMax);
-        bulletPool = FindObjectOfType<EnemyManager>().EnemyBulletPool;
     }
 
     protected virtual void Update(){
