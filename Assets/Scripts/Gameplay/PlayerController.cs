@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     public static event Action<int> PlayerHealthChangedEvent;
 
     [Header("Movement")]
-    public new Rigidbody rigidbody;
+    public CharacterController characterController;
     public float speed;
+    private float gravityValue = -9.81f;
 
     [Header("Shooting")]
     [Min(0.01f)]
@@ -45,6 +46,9 @@ public class PlayerController : MonoBehaviour
     [Min(1)]
     public int maxHealth;
     public static int health; // Since multiple players can exist
+    private Vector3 velocity;
+    public float pushPower = 1;
+
 
     
     void Awake()
@@ -106,8 +110,12 @@ public class PlayerController : MonoBehaviour
                 Input.GetAxisRaw("Horizontal") * speed,
                 0,
                 Input.GetAxisRaw("Vertical") * speed), speed);
-        vel.y = rigidbody.velocity.y;
-        rigidbody.velocity = vel;
+        velocity.x = vel.x;
+        velocity.z = vel.z;
+        // velocity.y = characterController.isGrounded && characterController.velocity.y < 0 ? 0 : gravityValue; 
+        velocity.y += gravityValue * Time.deltaTime;
+        if(characterController.isGrounded && characterController.velocity.y < 0) velocity.y = 0;
+        characterController.Move(velocity * Time.deltaTime);
         
         // Animate alongside movement
         if (animator)
@@ -141,7 +149,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Make sure it doesn't spin on its own
-        rigidbody.angularVelocity = Vector3.zero;
+        // GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
         // Shooty logic - if we have a pool and prefab, we can fire
         if (projectileMaxPoolSize > 0 && projectilePrefab)
@@ -228,5 +236,21 @@ public class PlayerController : MonoBehaviour
     {
         // Player is the kill. Do a dead.
         gameObject.SetActive(false);
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+            // no rigidbody
+        if (body == null || body.isKinematic) { return; }
+        // We dont want to push objects below us
+        if (hit.moveDirection.y < -0.3) { return; }
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        var pushDir = new Vector3 (velocity.x, 0, velocity.z);
+        // If you know how fast your character is trying to move,
+        // then you can also multiply the push velocity by that.
+        // Apply the push
+        body.velocity = pushDir * pushPower;
     }
 }
