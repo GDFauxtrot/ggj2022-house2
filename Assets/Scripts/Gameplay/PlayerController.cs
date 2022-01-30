@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
     [Min(1)]
     public int maxHealth;
     public static int health; // Since multiple players can exist
+    private Vector3 velocity;
+    public float pushPower = 1;
+
 
     
     void Awake()
@@ -107,8 +110,12 @@ public class PlayerController : MonoBehaviour
                 Input.GetAxisRaw("Horizontal") * speed,
                 0,
                 Input.GetAxisRaw("Vertical") * speed), speed);
-        vel.y = characterController.isGrounded && characterController.velocity.y < 0 ? 0 : gravityValue; 
-        characterController.Move(vel * Time.deltaTime);
+        velocity.x = vel.x;
+        velocity.z = vel.z;
+        // velocity.y = characterController.isGrounded && characterController.velocity.y < 0 ? 0 : gravityValue; 
+        velocity.y += gravityValue * Time.deltaTime;
+        if(characterController.isGrounded && characterController.velocity.y < 0) velocity.y = 0;
+        characterController.Move(velocity * Time.deltaTime);
         
         // Animate alongside movement
         if (animator)
@@ -227,5 +234,21 @@ public class PlayerController : MonoBehaviour
     {
         // Player is the kill. Do a dead.
         gameObject.SetActive(false);
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+            // no rigidbody
+        if (body == null || body.isKinematic) { return; }
+        // We dont want to push objects below us
+        if (hit.moveDirection.y < -0.3) { return; }
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        var pushDir = new Vector3 (velocity.x, 0, velocity.z);
+        // If you know how fast your character is trying to move,
+        // then you can also multiply the push velocity by that.
+        // Apply the push
+        body.velocity = pushDir * pushPower;
     }
 }

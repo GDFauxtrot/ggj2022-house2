@@ -53,7 +53,7 @@ public class ShopManager : MonoBehaviour
     {
         inShop = true;
         shopTiggerCanvas.SetActive(false);
-        CameraController.SetCurrentTarget(cameraTarget);
+        // CameraController.SetCurrentTarget(cameraTarget);
         ShopCanvas.SetActive(true);
         itemSelectionIcons[0].Select();
     }
@@ -61,7 +61,7 @@ public class ShopManager : MonoBehaviour
     public void Close()
     {
         inShop = false;
-        CameraController.SetCurrentTarget(player.transform);
+        // CameraController.SetCurrentTarget(player.transform);
         ShopCanvas.SetActive(false);
     }
 
