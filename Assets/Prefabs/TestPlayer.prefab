@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 7515701754950273880}
   - component: {fileID: 7513873610207469813}
   - component: {fileID: 1804237511045518700}
+  - component: {fileID: 4416270113962114246}
   m_Layer: 6
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -664,6 +665,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.790023, z: 0.1086805}
+--- !u!65 &4416270113962114246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7515701754950273887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.437087, y: 2.694127, z: 2.3393464}
+  m_Center: {x: -0.017525434, y: 0.84706354, z: 0.07807922}
 --- !u!1001 &7515701756119560438
 PrefabInstance:
   m_ObjectHideFlags: 0
