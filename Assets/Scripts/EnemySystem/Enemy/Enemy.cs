@@ -7,8 +7,6 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyData data;
     private int health;
-    [Header("Loot")]
-    [SerializeField] private GameObject lootPref;
     [Header("SoundEffects")]
     public RandomAudioPlayer HitSound;
     private Animator animator;

@@ -20,4 +20,6 @@ MonoBehaviour:
   lootItems:
   - item: {fileID: 11400000, guid: 62c533ffc32793147a985f3c747870fe, type: 2}
     droppingRate: 0.02
+  - item: {fileID: 11400000, guid: 3185df3c890e9ea4690d4a175606c662, type: 2}
+    droppingRate: 0.1
   shootingRange: 25
