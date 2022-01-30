@@ -16,7 +16,7 @@ public class EnemyShootingAtPlayer : EnemyShootingBase
         {
             EnemyProjectile bullet = EnemyManager.Instance.EnemyBulletPool.GetObject().GetComponent<EnemyProjectile>();
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            bullet.Setup(transform.position, direction, enemyData.attack);
+            bullet.Setup(transform.position, direction, enemyData.attack, EnemyManager.Instance.EnemyBulletPool);
             animator.SetBool("HasShot", true);
         }
     }

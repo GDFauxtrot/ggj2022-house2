@@ -7,6 +7,7 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private float movementSpeed = 5f;
     private Vector3 movementDirection;
     private float damageValue;
+    private ObjectPool creatorPool;
 
     [SerializeField] private float lifetime = 10f;
     private float lifetimer = 0f;
@@ -19,13 +20,14 @@ public class EnemyProjectile : MonoBehaviour
             lifetimer += Time.deltaTime;
             if (lifetimer > lifetime)
             {
-                EnemyManager.Instance.EnemyBulletPool.Recycle(gameObject);
+                Recycle();
             }
         }
     }
 
-    public void Setup(Vector3 startPos, Vector3 direction, float damage)
+    public void Setup(Vector3 startPos, Vector3 direction, float damage, ObjectPool creatorPool)
     {
+        this.creatorPool = creatorPool;
         gameObject.SetActive(true);
         transform.position = startPos;
         movementDirection = direction;
@@ -33,5 +35,9 @@ public class EnemyProjectile : MonoBehaviour
         damageValue = damage;
 
         transform.LookAt(transform.position + direction);
+    }
+
+    public void Recycle(){
+        creatorPool.Recycle(gameObject);
     }
 }
