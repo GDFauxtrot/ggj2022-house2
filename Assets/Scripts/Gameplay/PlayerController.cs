@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static event Action PlayerDiedEvent;
-    public static event Action PlayerHurtEvent;
+    public static event Action<int> PlayerHealthChangedEvent;
 
     [Header("Movement")]
     public Rigidbody rigidbody;
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         // Decrease health by 1, as advertised. Trigger events as well
         health -= 1;
-        PlayerHurtEvent();
+        PlayerHealthChangedEvent(health);
         ProcessDead();
     }
 
@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
     {
         if (health > 0)
             return;
-        
+
         // Invoke player death. All interested objects can get notified and do logic (including this one)
         PlayerDiedEvent();
     }

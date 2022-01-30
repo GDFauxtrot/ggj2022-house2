@@ -10,7 +10,7 @@ public class HealthMeter : MonoBehaviour
 
     void Awake()
     {
-        PlayerController.PlayerHurtEvent += PlayerHurt;
+        PlayerController.PlayerHealthChangedEvent += PlayerHurt;
 
         // Find player if the reference wasn't properly established
         if (!player)
@@ -43,16 +43,26 @@ public class HealthMeter : MonoBehaviour
 
     void OnDestroy()
     {
-        PlayerController.PlayerHurtEvent -= PlayerHurt;
+        PlayerController.PlayerHealthChangedEvent -= PlayerHurt;
     }
 
     // Event-based actions
-    void PlayerHurt()
+    void PlayerHurt(int newHealth)
     {
-        if (player && healthIcons.Count > 0)
+        int currentHealth = healthIcons.Count; // lmao
+
+        if (newHealth < currentHealth)
         {
             GameObject.Destroy(healthIcons[healthIcons.Count-1]);
             healthIcons.RemoveAt(healthIcons.Count-1);
+        }
+        else
+        {
+            int healthAdded = newHealth - currentHealth;
+            for (int i = 0; i < healthAdded; ++i)
+            {
+                healthIcons.Add(GameObject.Instantiate(healthIconPrefab, transform));
+            }
         }
     }
 }
