@@ -40,29 +40,24 @@ public class Enemy : MonoBehaviour
     public virtual void Die(){
         DropLoots();
         Destroy(gameObject);
-        // transform.position = Vector3.zero;
-        // Initialize();
     }
 
     private void DropLoots() {
-        // All enemies drop some amount of money items
+        // All enemies drop some amount of money
         int moneyDropped = Random.Range(data.moneyDropMin, data.moneyDropMax);
-
         for (int x = 0; x < moneyDropped; ++x)
         {
-            // GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
             GameObject moneyObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.Money);
-            moneyObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
+            moneyObj.GetComponent<MoneyPickup>().Initialize(1, transform.position);
         }
 
-        // drop Items
+        // drop loot things
         foreach (LootItemData lootData in data.lootItems)
         {
             if (Random.Range(0, 1f) <= lootData.dropChance)
             {
-                // GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
                 GameObject lootObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.LootDrop);
-                lootObj.GetComponent<LootPickUp>().InitializeItemLoot(lootData.item, transform.position + Vector3.up);
+                lootObj.GetComponent<LootPickup>().Initialize(lootData.item, transform.position);
             }
         }
     }

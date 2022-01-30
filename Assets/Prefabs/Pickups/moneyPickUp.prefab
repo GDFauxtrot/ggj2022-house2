@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4698372660785135086}
-  - component: {fileID: -2744391565412816415}
-  - component: {fileID: 8375667743455415236}
+  - component: {fileID: -8372815148669666261}
+  - component: {fileID: -3530438236279334863}
   - component: {fileID: 4698372660785135123}
   - component: {fileID: 4698372660785135084}
   m_Layer: 10
-  m_Name: lootPickUp
+  m_Name: moneyPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2744391565412816415
+--- !u!114 &-8372815148669666261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   lootCollider: {fileID: 4698372660785135084}
   pickUpDistance: 10
   attractMovingSpeed: 40
---- !u!114 &8375667743455415236
+--- !u!114 &-3530438236279334863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,10 +61,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4698372660785135087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 098b2684bee9a2b45aecec59f323074d, type: 3}
+  m_Script: {fileID: 11500000, guid: dd6776466701bfc4a91372c752ef0765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootMovement: {fileID: -2744391565412816415}
+  lootMovement: {fileID: -8372815148669666261}
 --- !u!54 &4698372660785135123
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c821bae48daa0fe4d91dd582787ff6b6, type: 2}
+  - {fileID: 2100000, guid: cf745b4cbb46dcb46bb29b261257e6a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

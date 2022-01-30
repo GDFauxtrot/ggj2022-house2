@@ -16,8 +16,8 @@ public class ObjectPoolManager : MonoBehaviour
     public GameObject lootDropPrefab;
 
     private Dictionary<ObjectPoolType, List<GameObject>> pools;
+    private Dictionary<ObjectPoolType, GameObject> poolParents;
     private Dictionary<ObjectPoolType, List<GameObject>> objectsInUse;
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -28,13 +28,20 @@ public class ObjectPoolManager : MonoBehaviour
         {
             Instance = this;
         }
+        DontDestroyOnLoad(gameObject);
 
 
         // Create pool for each possible pool type in the game
         pools = new Dictionary<ObjectPoolType, List<GameObject>>();
+        poolParents = new Dictionary<ObjectPoolType, GameObject>();
         foreach (ObjectPoolType type in Enum.GetValues(typeof(ObjectPoolType)))
         {
             pools.Add(type, new List<GameObject>());
+            
+            GameObject parent = new GameObject(Enum.GetName(typeof(ObjectPoolType), type) + " Parent");
+            parent.transform.SetParent(transform);
+
+            poolParents.Add(type, parent);
         }
 
         objectsInUse = new Dictionary<ObjectPoolType, List<GameObject>>();
@@ -70,7 +77,7 @@ public class ObjectPoolManager : MonoBehaviour
         if (pools[type].Count <= 0)
         {
             // Spawn new object, goes straight into use
-            obj = Instantiate(GetPrefabForPoolType(type));
+            obj = Instantiate(GetPrefabForPoolType(type), poolParents[type].transform);
         }
         else
         {

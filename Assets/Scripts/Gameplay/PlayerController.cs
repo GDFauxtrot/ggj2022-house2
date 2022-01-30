@@ -208,8 +208,6 @@ public class PlayerController : MonoBehaviour
             // Recycle enemy projectile, reduce health
             ObjectPoolManager.Instance.RecycleIntoPool(ObjectPoolType.EnemyProjectile, other.gameObject);
 
-            // EnemyManager.Instance.EnemyBulletPool.Recycle(other.gameObject);
-
             HurtPlayerOnce();
         }
     }

@@ -1980,7 +1980,7 @@ MonoBehaviour:
   playerProjectilePrefab: {fileID: 0}
   enemyProjectilePrefab: {fileID: 7472460837400284858, guid: f597d5037a454144e925a42c3949e1c9,
     type: 3}
-  moneyPrefab: {fileID: 4698372660785135087, guid: 800f43ca72b49d54f9974bbec7d33c6b,
+  moneyPrefab: {fileID: 4698372660785135087, guid: e0aac68ba6fee1149a6c8cbb1950af41,
     type: 3}
   lootDropPrefab: {fileID: 4698372660785135087, guid: 800f43ca72b49d54f9974bbec7d33c6b,
     type: 3}
@@ -1997,7 +1997,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1565542545
 GameObject:
@@ -3021,52 +3021,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2069406224}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2124935750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2124935752}
-  - component: {fileID: 2124935751}
-  m_Layer: 0
-  m_Name: DropPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2124935751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2124935750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5602c9bfa04dccd478e9a5d9d851b2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectPref: {fileID: 5028217750744011732, guid: 65a9c0b2f67cd4a48975c3005ad8654a,
-    type: 3}
---- !u!4 &2124935752
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2124935750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.053005, y: 28.866583, z: -39.498077}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2835441633553366889
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -53,7 +53,7 @@ public class Boss : MonoBehaviour
         int moneyLoot = Random.Range(data.moneyDropMin, data.moneyDropMax);
         for (int x = 0; x < moneyLoot; ++x) {
             GameObject moneyObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.Money);
-            moneyObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
+            moneyObj.GetComponent<MoneyPickup>().Initialize(1, transform.position);
         }
 
         // drop Items
@@ -61,7 +61,7 @@ public class Boss : MonoBehaviour
             if(Random.Range(0, 1f) <= lootData.dropChance)
             {
                 GameObject lootObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.LootDrop);
-                lootObj.GetComponent<LootPickUp>().InitializeItemLoot(lootData.item, transform.position + Vector3.up);
+                lootObj.GetComponent<LootPickup>().Initialize(lootData.item, transform.position);
             }
         }
     }
