@@ -14,10 +14,9 @@ public class EnemyShootingAtPlayer : EnemyShootingBase
         // Simple impl - target is always "player"
         if (Vector3.Distance(transform.position, player.transform.position) < enemyData.targetRange)
         {
-            // EnemyProjectile bullet = EnemyManager.Instance.EnemyBulletPool.GetObject().GetComponent<EnemyProjectile>();
             EnemyProjectile bullet = ObjectPoolManager.Instance.GetObject(ObjectPoolType.EnemyProjectile).GetComponent<EnemyProjectile>();
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            bullet.Setup(transform.position, direction, enemyData.attack, EnemyManager.Instance.EnemyBulletPool);
+            bullet.Setup(transform.position, direction, 1);
             animator.SetBool("HasShot", true);
         }
     }

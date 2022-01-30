@@ -12,7 +12,6 @@ public class Boss : MonoBehaviour
     public RandomAudioPlayer HitSound;
 
     [Header("Moves")]
-    [SerializeField] private ObjectPool bulletPool;
     [SerializeField] private Transform doorTrans;
     private bool rotateToPlayer;
 
@@ -51,17 +50,17 @@ public class Boss : MonoBehaviour
 
     private void DropLoots(){
         // drop Money
-        int moneyLoot = Random.Range(data.lootMoneyMin, data.lootMoneyMax);
-        for(int x = 0; x < moneyLoot; ++x){
-            GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
-            lootObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
+        int moneyLoot = Random.Range(data.moneyDropMin, data.moneyDropMax);
+        for (int x = 0; x < moneyLoot; ++x) {
+            GameObject moneyObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.Money);
+            moneyObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
         }
 
         // drop Items
         foreach(LootItemData lootData in data.lootItems){
-            if(Random.Range(0, 1f) <= lootData.droppingRate)
+            if(Random.Range(0, 1f) <= lootData.dropChance)
             {
-                GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
+                GameObject lootObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.LootDrop);
                 lootObj.GetComponent<LootPickUp>().InitializeItemLoot(lootData.item, transform.position + Vector3.up);
             }
         }
@@ -77,7 +76,7 @@ public class Boss : MonoBehaviour
 
     public void LookAtPlayer(){
         Vector3 pos = player.transform.position;
-        pos.y = transform.position.y;        
+        pos.y = transform.position.y;
         transform.LookAt(pos);
     }
 
@@ -88,9 +87,9 @@ public class Boss : MonoBehaviour
     public void ShootForward(){
         Vector3 direction = transform.forward;
         // shot 3 bullets
-        for(int x = -1; x <= 1; ++x){
-            EnemyProjectile bullet = bulletPool.GetObject().GetComponent<EnemyProjectile>();
-            bullet.Setup(doorTrans.position, Quaternion.Euler(0, 45 * x, 0) * direction, 1, bulletPool);
+        for (int x = -1; x <= 1; ++x) {
+            EnemyProjectile bullet = ObjectPoolManager.Instance.GetObject(ObjectPoolType.EnemyProjectile).GetComponent<EnemyProjectile>();
+            bullet.Setup(doorTrans.position, Quaternion.Euler(0, 45 * x, 0) * direction, 1);
         }
         FinishAttacking();
     }
