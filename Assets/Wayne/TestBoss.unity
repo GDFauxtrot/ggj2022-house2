@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-273068
+  m_Name: pb_Mesh833882
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -347,8 +347,8 @@ MonoBehaviour:
   overheadAngle: 45
   interpolationValue: 5
   distance: 20
-  snapPosXToTarget: 0
-  lockRotToTarget: 0
+  snapPosXToTarget: 1
+  lockRotToTarget: 1
   screenShakeAmount: 0
   screenShakeSpeed: 50
   screenShakeFalloff: 0.2
@@ -497,12 +497,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 983621558}
-  orthographicSize: 8
+  orthographicSize: 22.5
   overheadAngle: 45
   interpolationValue: 5
-  distance: 20
-  snapPosXToTarget: 0
-  lockRotToTarget: 0
+  distance: 20.6
+  snapPosXToTarget: 1
+  lockRotToTarget: 1
   screenShakeAmount: 0
   screenShakeSpeed: 50
   screenShakeFalloff: 0.2
@@ -8664,6 +8664,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7224352354428799156, guid: 7df8510836452924b826318fd038a217,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -83.088135
+      objectReference: {fileID: 0}
     - target: {fileID: 7224352355331851497, guid: 7df8510836452924b826318fd038a217,
         type: 3}
       propertyPath: m_Name
@@ -8773,6 +8778,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224352355802651002, guid: 7df8510836452924b826318fd038a217,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -85.27954
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df8510836452924b826318fd038a217, type: 3}
