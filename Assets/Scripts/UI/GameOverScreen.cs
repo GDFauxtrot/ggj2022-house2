@@ -12,10 +12,12 @@ public class GameOverScreen : MonoBehaviour
     }
 
     void OnGameOver(){
+        Time.timeScale = 0.5f;
         gameOverUI.SetActive(true);
     }
 
     public void RetryButton(){
+        Time.timeScale = 1;
         gameOverUI.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
