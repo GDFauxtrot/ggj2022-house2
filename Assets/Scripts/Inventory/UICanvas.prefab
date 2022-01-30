@@ -1683,6 +1683,7 @@ GameObject:
   - component: {fileID: 667675586759058467}
   - component: {fileID: 7260945968259859964}
   - component: {fileID: 1798655290817412871}
+  - component: {fileID: 722987755}
   m_Layer: 5
   m_Name: gameOverUI
   m_TagString: Untagged
@@ -1733,7 +1734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.07075471, b: 0.07075471, a: 0.8}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1750,6 +1751,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &722987755
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8030454843950782722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 233f480c2128e64429c722101fb7614a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7795358373485539919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1907,6 +1928,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 607039352685771515, guid: fcfd3e26efa24bf4fb88791bcf2908cf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -83.088135
+      objectReference: {fileID: 0}
+    - target: {fileID: 607039353144580120, guid: fcfd3e26efa24bf4fb88791bcf2908cf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 607039353184048896, guid: fcfd3e26efa24bf4fb88791bcf2908cf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1941,6 +1972,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 607039353186045029, guid: fcfd3e26efa24bf4fb88791bcf2908cf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43.190186
+      objectReference: {fileID: 0}
+    - target: {fileID: 607039353391199059, guid: fcfd3e26efa24bf4fb88791bcf2908cf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43.190186
+      objectReference: {fileID: 0}
+    - target: {fileID: 607039353526905653, guid: fcfd3e26efa24bf4fb88791bcf2908cf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -85.27954
       objectReference: {fileID: 0}
     - target: {fileID: 607039353657378084, guid: fcfd3e26efa24bf4fb88791bcf2908cf,
         type: 3}
