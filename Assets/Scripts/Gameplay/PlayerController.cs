@@ -199,8 +199,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
         {
             // Recycle enemy projectile, reduce health
-            EnemyManager.Instance.EnemyBulletPool.Recycle(other.gameObject);
-
+            other.gameObject.GetComponent<EnemyProjectile>()?.Recycle();
             HurtPlayerOnce();
         }
     }
