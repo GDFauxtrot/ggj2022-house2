@@ -39064,7 +39064,7 @@ PrefabInstance:
     - target: {fileID: 7515701754950273887, guid: 551e97422b9569b4e93978b8ef307861,
         type: 3}
       propertyPath: m_Name
-      value: TestPlayer (1)
+      value: Player Clone
       objectReference: {fileID: 0}
     - target: {fileID: 7515701754950273887, guid: 551e97422b9569b4e93978b8ef307861,
         type: 3}
