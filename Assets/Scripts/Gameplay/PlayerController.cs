@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public static event Action<int> PlayerHealthChangedEvent;
 
     [Header("Movement")]
-    public Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     public float speed;
 
     [Header("Shooting")]
@@ -198,7 +198,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
         {
             // Recycle enemy projectile, reduce health
-            EnemyManager.Instance.EnemyBulletPool.Recycle(other.gameObject);
+            ObjectPoolManager.Instance.RecycleIntoPool(ObjectPoolType.EnemyProjectile, other.gameObject);
+
+            // EnemyManager.Instance.EnemyBulletPool.Recycle(other.gameObject);
 
             HurtPlayerOnce();
         }

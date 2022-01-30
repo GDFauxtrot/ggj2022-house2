@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: enemy1
   m_EditorClassIdentifier: 
   maxHealth: 10
-  attack: 2
   movingSpeed: 2
-  lootMoneyMin: 1
-  lootMoneyMax: 10
+  targetRange: 25
+  moneyDropMin: 1
+  moneyDropMax: 10
   lootItems:
   - item: {fileID: 11400000, guid: 62c533ffc32793147a985f3c747870fe, type: 2}
-    droppingRate: 0.02
-  shootingRange: 25
+    dropChance: 0

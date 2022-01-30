@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     private static Transform currentTarget;
 
     [Header("Camera Settings")]
-    public Camera camera;
+    public new Camera camera;
     public float orthographicSize = 8f;
 
     [Header("Movement")]

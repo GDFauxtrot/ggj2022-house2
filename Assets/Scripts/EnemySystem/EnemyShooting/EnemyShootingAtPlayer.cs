@@ -12,11 +12,12 @@ public class EnemyShootingAtPlayer : EnemyShootingBase
     protected override void Shoot()
     {
         // Simple impl - target is always "player"
-        if (Vector3.Distance(transform.position, player.transform.position) < enemyData.shootingRange)
+        if (Vector3.Distance(transform.position, player.transform.position) < enemyData.targetRange)
         {
-            EnemyProjectile bullet = EnemyManager.Instance.EnemyBulletPool.GetObject().GetComponent<EnemyProjectile>();
+            // EnemyProjectile bullet = EnemyManager.Instance.EnemyBulletPool.GetObject().GetComponent<EnemyProjectile>();
+            EnemyProjectile bullet = ObjectPoolManager.Instance.GetObject(ObjectPoolType.EnemyProjectile).GetComponent<EnemyProjectile>();
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            bullet.Setup(transform.position, direction, enemyData.attack);
+            bullet.Setup(transform.position, direction, 1);
             animator.SetBool("HasShot", true);
         }
     }

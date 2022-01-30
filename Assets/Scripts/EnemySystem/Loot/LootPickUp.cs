@@ -92,7 +92,9 @@ public class LootPickUp : MonoBehaviour
         if(collider.gameObject == player)
         {
             OnPickUp();
-            EnemyManager.Instance.LootPickUpPool.Recycle(gameObject);
+            ObjectPoolManager.Instance.RecycleIntoPool(
+                type == LootType.Money ? ObjectPoolType.Money : ObjectPoolType.LootDrop,
+                gameObject);
         }
     }
 

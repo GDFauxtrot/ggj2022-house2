@@ -44,19 +44,24 @@ public class Enemy : MonoBehaviour
         // Initialize();
     }
 
-    private void DropLoots(){
-        // drop Money
-        int moneyLoot = Random.Range(data.lootMoneyMin, data.lootMoneyMax);
-        for(int x = 0; x < moneyLoot; ++x){
-            GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
-            lootObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
+    private void DropLoots() {
+        // All enemies drop some amount of money items
+        int moneyDropped = Random.Range(data.moneyDropMin, data.moneyDropMax);
+
+        for (int x = 0; x < moneyDropped; ++x)
+        {
+            // GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
+            GameObject moneyObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.Money);
+            moneyObj.GetComponent<LootPickUp>().InitializeMoneyLoot(1, transform.position + Vector3.up);
         }
 
         // drop Items
-        foreach(LootItemData lootData in data.lootItems){
-            if(Random.Range(0, 1f) <= lootData.droppingRate)
+        foreach (LootItemData lootData in data.lootItems)
+        {
+            if (Random.Range(0, 1f) <= lootData.dropChance)
             {
-                GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
+                // GameObject lootObj = EnemyManager.Instance.LootPickUpPool.GetObject();
+                GameObject lootObj = ObjectPoolManager.Instance.GetObject(ObjectPoolType.LootDrop);
                 lootObj.GetComponent<LootPickUp>().InitializeItemLoot(lootData.item, transform.position + Vector3.up);
             }
         }
