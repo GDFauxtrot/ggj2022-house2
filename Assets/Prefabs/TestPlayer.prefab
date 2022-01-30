@@ -628,7 +628,8 @@ MonoBehaviour:
   projectileLifetime: 2
   projectileMaxPoolSize: 10
   projectileSource: {fileID: 5090191579518094681}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1993671497581686001, guid: 80062ea10f6888f42ace664b44d4a859,
+    type: 3}
   rotationFollowMouse: 1
   animator: {fileID: 7515701754868848895}
   shootAudio: {fileID: 1544459379}
