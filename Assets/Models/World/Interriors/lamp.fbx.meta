@@ -1,62 +1,8 @@
 fileFormatVersion: 2
-guid: 68c5d77abab9fe8469875c2166e8289f
+guid: 6939b570bbaa92146b56365d183eda86
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable:
-  - first:
-      74: 9181670125041858923
-    second: Armature|0NoMotion
-  - first:
-      74: -7254107038888233952
-    second: Armature|Dazed
-  - first:
-      74: -3034695959047677848
-    second: Armature|DodgeRoll
-  - first:
-      74: 171521025869868558
-    second: Armature|FallOver
-  - first:
-      74: -7826325323355188221
-    second: Armature|HopForward
-  - first:
-      74: -8945691123924629249
-    second: Armature|Idle
-  - first:
-      74: 7468592140506350251
-    second: Armature|JumpSlam
-  - first:
-      74: 9089602658448941816
-    second: Armature|LightHitBack
-  - first:
-      74: 7927378061307974329
-    second: Armature|LightHitLeft
-  - first:
-      74: 5458191228966286894
-    second: Armature|LightHitRight
-  - first:
-      74: -151003386530439987
-    second: Armature|MiddleRocketFire
-  - first:
-      74: -5573693232793459537
-    second: Armature|RocketForward
-  - first:
-      74: -7453387558714718212
-    second: Armature|Shoot
-  - first:
-      74: 2034173628819619319
-    second: Armature|ShootLargeImpact
-  - first:
-      74: -7210684743234539915
-    second: Armature|ShootSmallImpact
-  - first:
-      74: -4610249191796156368
-    second: Armature|SideSlam
-  - first:
-      74: 8349542763059015795
-    second: Armature|Walk
-  - first:
-      74: -2731256362020618665
-    second: Armature|Wobble
+  internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -66,38 +12,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Inside
+      name: Inside.003
     second: {fileID: 2100000, guid: 60bfeabac350a9a46a6d18e33f6dd09a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Inside.002
-    second: {fileID: 2100000, guid: 60bfeabac350a9a46a6d18e33f6dd09a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LittleDoor
-    second: {fileID: 2100000, guid: e7b18cb24365a9542951e719c1000961, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Roof.001
-    second: {fileID: 2100000, guid: 99f06226fdc92db47bcf07d7aee590bd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Roof.002
-    second: {fileID: 2100000, guid: 99f06226fdc92db47bcf07d7aee590bd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Stone
-    second: {fileID: 2100000, guid: 33b90dd0a3d97e548aacb55d1dc28e11, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wall2
-    second: {fileID: 2100000, guid: 83eda1a73c1c90643bfa4e804700c999, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
