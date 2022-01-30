@@ -277,12 +277,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!143 &637699233 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 1804237511045518700, guid: 551e97422b9569b4e93978b8ef307861,
-    type: 3}
-  m_PrefabInstance: {fileID: 1244847762}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &884689965
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,20 +592,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7515701754950273880, guid: 551e97422b9569b4e93978b8ef307861,
         type: 3}
-      propertyPath: rigidbody
-      value: 
-      objectReference: {fileID: 7515701754950273881, guid: 551e97422b9569b4e93978b8ef307861,
-        type: 3}
-    - target: {fileID: 7515701754950273880, guid: 551e97422b9569b4e93978b8ef307861,
-        type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 1293532479}
-    - target: {fileID: 7515701754950273880, guid: 551e97422b9569b4e93978b8ef307861,
-        type: 3}
-      propertyPath: characterController
-      value: 
-      objectReference: {fileID: 637699233}
     - target: {fileID: 7515701754950273887, guid: 551e97422b9569b4e93978b8ef307861,
         type: 3}
       propertyPath: m_Name

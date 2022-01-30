@@ -621,7 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88456db5faa34f046b25da3ea2fbc551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
+  characterController: {fileID: 1804237511045518700}
   speed: 15
   shootFireRate: 5
   projectileSpeed: 20
