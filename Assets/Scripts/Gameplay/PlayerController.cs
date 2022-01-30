@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     public static event Action<int> PlayerHealthChangedEvent;
 
     [Header("Movement")]
-    public Rigidbody rigidbody;
+    public CharacterController characterController;
     public float speed;
+    private float gravityValue = -9.81f;
 
     [Header("Shooting")]
     [Min(0.01f)]
@@ -106,8 +107,8 @@ public class PlayerController : MonoBehaviour
                 Input.GetAxisRaw("Horizontal") * speed,
                 0,
                 Input.GetAxisRaw("Vertical") * speed), speed);
-        vel.y = rigidbody.velocity.y;
-        rigidbody.velocity = vel;
+        vel.y = characterController.isGrounded && characterController.velocity.y < 0 ? 0 : gravityValue; 
+        characterController.Move(vel * Time.deltaTime);
         
         // Animate alongside movement
         if (animator)
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Make sure it doesn't spin on its own
-        rigidbody.angularVelocity = Vector3.zero;
+        // GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
         // Shooty logic - if we have a pool and prefab, we can fire
         if (projectileMaxPoolSize > 0 && projectilePrefab)
