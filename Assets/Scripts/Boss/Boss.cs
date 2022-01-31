@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private GameObject player;
     [Header("SoundEffects")]
     public RandomAudioPlayer HitSound;
+    [Header("UI")]
+    [SerializeField] private GameObject healthCanvas;
+    [SerializeField] private Image healthFillBar;
 
     [Header("Moves")]
     [SerializeField] private Transform mapLowerLeftPoint;
@@ -29,12 +33,16 @@ public class Boss : MonoBehaviour
     public void Initialize(){
         SceneLinkedSMB<Boss>.Initialise(animator, this);
         gameObject.SetActive(true);
+        healthCanvas.SetActive(true);
+
         health = data.maxHealth;
+        healthFillBar.fillAmount = 1;
         if(!player) player = FindObjectOfType<PlayerController>().gameObject;
     } 
 
     public void TakeDamage(int damage){
         health -= damage;
+        healthFillBar.fillAmount = health/((float)data.maxHealth);
         if(health <= 0){
             Die();
         }
@@ -51,6 +59,7 @@ public class Boss : MonoBehaviour
 
     public virtual void Die(){
         DropLoots();
+        healthCanvas.SetActive(false);
         Destroy(gameObject);
     }
 
