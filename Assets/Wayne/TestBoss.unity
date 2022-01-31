@@ -8512,14 +8512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 194151882, guid: cb87c044decac81499fc940225caa998, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 427132622, guid: cb87c044decac81499fc940225caa998, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4279836044952119695, guid: cb87c044decac81499fc940225caa998,
         type: 3}
       propertyPath: m_RootOrder
@@ -8585,12 +8577,11 @@ PrefabInstance:
       propertyPath: HitSound
       value: 
       objectReference: {fileID: 1744174844}
-    - target: {fileID: 4654012428364377809, guid: cb87c044decac81499fc940225caa998,
+    - target: {fileID: 4654012428364377811, guid: cb87c044decac81499fc940225caa998,
         type: 3}
-      propertyPath: circleMarkPref
-      value: 
-      objectReference: {fileID: 5172880301476984953, guid: 2794bb8fbd6634240b0f3a9e9725f1bc,
-        type: 3}
+      propertyPath: m_Radius
+      value: 5.63
+      objectReference: {fileID: 0}
     - target: {fileID: 8250389278546396378, guid: cb87c044decac81499fc940225caa998,
         type: 3}
       propertyPath: m_Name
@@ -8683,6 +8674,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -83.088135
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224352354863694108, guid: 7df8510836452924b826318fd038a217,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43.190002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224352355052863018, guid: 7df8510836452924b826318fd038a217,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -43.190002
       objectReference: {fileID: 0}
     - target: {fileID: 7224352355331851497, guid: 7df8510836452924b826318fd038a217,
         type: 3}
