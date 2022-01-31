@@ -15,8 +15,10 @@ public class Boss : MonoBehaviour
     [SerializeField] private Transform mapLowerLeftPoint;
     [SerializeField] private Transform mapUpperRightPoint;
     [SerializeField] private Transform doorTrans;
+    [SerializeField] private Transform centerTrans;
     [SerializeField] private GameObject circleMarkPref;
     private List<GameObject> circleMarks = new List<GameObject>();
+    [SerializeField] private GameObject sideSlamHurtBox;
     private bool rotateToPlayer;
 
     void Start(){
@@ -70,7 +72,16 @@ public class Boss : MonoBehaviour
         }
     }
 
-    // Moves
+    void OnCollisionEnter(Collision col)
+    {
+        // get danaged when touching enemy
+        if (col.collider.gameObject == player)
+        {
+            player.GetComponent<PlayerController>().HurtPlayerOnce();
+        }
+    }
+
+    // Moves/Skills for the Boss
     public void LookAtRandomDirection(){
         Vector3 lookAtPos = new Vector3(Random.Range(mapLowerLeftPoint.transform.position.x, mapUpperRightPoint.transform.position.x), 
                                         transform.position.y,
@@ -84,10 +95,6 @@ public class Boss : MonoBehaviour
         transform.LookAt(pos);
     }
 
-    public void FinishAttacking(){
-        animator.SetTrigger("FinishAttacking");
-    }
-
     public void ShootForward(){
         Vector3 direction = transform.forward;
         // shot 3 bullets
@@ -96,7 +103,6 @@ public class Boss : MonoBehaviour
             bullet.transform.localScale = Vector3.one * 0.5f;
             bullet.Setup(doorTrans.position, Quaternion.Euler(0, 45 * x, 0) * direction, 1);
         }
-        FinishAttacking();
     }
 
     public void ShootBulletsDown(){
@@ -125,9 +131,23 @@ public class Boss : MonoBehaviour
     }
 
     public void ShootBulletsDownFinished(){
-        FinishAttacking();
         foreach(GameObject mark in circleMarks){
             mark.SetActive(false);
+        }
+    }
+
+    public void SetSideSlamHurtBoxActive(bool value){
+        sideSlamHurtBox.SetActive(value);
+    }
+
+    public void ShootAround(int numOfBullets){
+        Vector3 direction = transform.forward;
+        float angleInterval = 360f / numOfBullets;
+        // shot 3 bullets
+        for (int x = 0; x < numOfBullets; ++x) {
+            EnemyProjectile bullet = ObjectPoolManager.Instance.GetObject(ObjectPoolType.EnemyProjectile).GetComponent<EnemyProjectile>();
+            bullet.transform.localScale = Vector3.one * 0.5f;
+            bullet.Setup(centerTrans.position, Quaternion.Euler(0, angleInterval * x, 0) * direction, 1);
         }
     }
 }
