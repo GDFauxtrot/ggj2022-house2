@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33458
+  m_Name: pb_Mesh29014
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -615,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 6909060331826391394, guid: e301c81f183d90047b8f2a16b1af3ae0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6909060331826391394, guid: e301c81f183d90047b8f2a16b1af3ae0,
         type: 3}
@@ -8515,7 +8515,7 @@ PrefabInstance:
     - target: {fileID: 4279836044952119695, guid: cb87c044decac81499fc940225caa998,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4279836044952119695, guid: cb87c044decac81499fc940225caa998,
         type: 3}
@@ -8577,11 +8577,6 @@ PrefabInstance:
       propertyPath: HitSound
       value: 
       objectReference: {fileID: 1744174844}
-    - target: {fileID: 4654012428364377811, guid: cb87c044decac81499fc940225caa998,
-        type: 3}
-      propertyPath: m_Radius
-      value: 5.63
-      objectReference: {fileID: 0}
     - target: {fileID: 8250389278546396378, guid: cb87c044decac81499fc940225caa998,
         type: 3}
       propertyPath: m_Name
